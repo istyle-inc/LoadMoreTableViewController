@@ -8,22 +8,23 @@
 
 Pod::Spec.new do |s|
   s.name             = "ReadMoreTableViewController"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of ReadMoreTableViewController."
+  s.version          = "0.1"
+  s.summary          = "Let's read more readily."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
 #   * Try to keep it short, snappy and to the point.
 #   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
+#   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description      = <<-DESC
+                       This library provids "read more" table view.
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/ReadMoreTableViewController"
+  s.homepage         = "http://repos.istyle.local/app/ReadMoreTableViewController"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "mishimay" => "mishimay@istyle.co.jp" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/ReadMoreTableViewController.git", :tag => s.version.to_s }
+  s.source           = { :git => "http://repos.istyle.local/app/ReadMoreTableViewController.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
