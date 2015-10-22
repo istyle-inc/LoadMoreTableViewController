@@ -14,6 +14,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		6DACD57F15C73944D9EFFFFF /* Pods_ReadMoreTableViewController_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B3742CC6FA8398B88C63FB1 /* Pods_ReadMoreTableViewController_Tests.framework */; };
+		9EAED76E1BD8D26C00A44E3F /* SampleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EAED76D1BD8D26C00A44E3F /* SampleCell.xib */; settings = {ASSET_TAGS = (); }; };
 		F2CAA8EE4D26E4FE14B8C544 /* Pods_ReadMoreTableViewController_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199825C4187AEB5497B1E3A1 /* Pods_ReadMoreTableViewController_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6E29C30766D54FBBA328CF38 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9865D50BF0BB5E837ECC5ADA /* Pods-ReadMoreTableViewController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadMoreTableViewController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReadMoreTableViewController_Tests/Pods-ReadMoreTableViewController_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		9EAED76D1BD8D26C00A44E3F /* SampleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SampleCell.xib; sourceTree = "<group>"; };
 		B20DF72E4D1A97BB6E0FBD27 /* Pods-ReadMoreTableViewController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadMoreTableViewController_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReadMoreTableViewController_Example/Pods-ReadMoreTableViewController_Example.release.xcconfig"; sourceTree = "<group>"; };
 		BA424FFCA1908815F0AA13C2 /* ReadMoreTableViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ReadMoreTableViewController.podspec; path = ../ReadMoreTableViewController.podspec; sourceTree = "<group>"; };
 		C56C86782BD836C6DF9E96B3 /* Pods-ReadMoreTableViewController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadMoreTableViewController_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReadMoreTableViewController_Tests/Pods-ReadMoreTableViewController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				9EAED76D1BD8D26C00A44E3F /* SampleCell.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -247,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				9EAED76E1BD8D26C00A44E3F /* SampleCell.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);

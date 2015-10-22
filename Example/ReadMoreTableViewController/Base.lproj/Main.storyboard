@@ -5,24 +5,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--Read More Table View Controller-->
+        <!--View Controller-->
         <scene sceneID="RFW-Hm-4JQ">
             <objects>
-                <tableViewController id="uiX-Z3-AZx" customClass="ReadMoreTableViewController" customModule="ReadMoreTableViewController" sceneMemberID="viewController">
+                <tableViewController id="uiX-Z3-AZx" customClass="ViewController" customModule="ReadMoreTableViewController_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ILZ-A9-m5R">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ksr-ga-qE3">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ksr-ga-qE3" id="PVg-zk-qvT">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="uiX-Z3-AZx" id="8hZ-l2-A50"/>
                             <outlet property="delegate" destination="uiX-Z3-AZx" id="DJi-I8-ahg"/>

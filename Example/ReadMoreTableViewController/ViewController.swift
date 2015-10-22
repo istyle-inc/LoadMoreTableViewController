@@ -11,15 +11,21 @@ import ReadMoreTableViewController
 
 class ViewController: ReadMoreTableViewController {
 
+    private var titles = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        configureCellClosure = { [weak self] cell, row in
+            cell.textLabel?.text = self?.titles[row]
+            return cell
+        }
+        fetchReadCountClosure = { [weak self] currentCount, completion in
+            let newTitles = ["sample", "sample", "sample", "sample", "sample"]
+            self?.titles += newTitles
+            completion(readCount: newTitles.count, hasNext: true)
+        }
+        registerNib("SampleCell")
     }
 
 }
-
