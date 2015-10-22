@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ReadMoreTableViewController
 
-class ViewController: UIViewController {
+class ViewController: ReadMoreTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
