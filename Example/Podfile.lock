@@ -1,0 +1,14 @@
+PODS:
+  - ReadMoreTableViewController (0.1.0)
+
+DEPENDENCIES:
+  - ReadMoreTableViewController (from `../`)
+
+EXTERNAL SOURCES:
+  ReadMoreTableViewController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ReadMoreTableViewController: e1ab408b5959ab74684ce02d390f4e99be8b7d1c
+
+COCOAPODS: 0.39.0

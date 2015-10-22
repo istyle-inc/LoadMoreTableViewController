@@ -7,9 +7,4 @@ end
 
 target 'ReadMoreTableViewController_Tests', :exclusive => true do
   pod "ReadMoreTableViewController", :path => "../"
-
-  pod 'Quick', '~> 0.3.1'
-  pod 'Nimble'
-  pod 'FBSnapshotTestCase'
-  pod 'Nimble-Snapshots'
 end
