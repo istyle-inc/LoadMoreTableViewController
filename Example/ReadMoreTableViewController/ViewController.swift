@@ -16,6 +16,8 @@ class ViewController: ReadMoreTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: "clear")
+
         configureCellClosure = { [weak self] cell, row in
             cell.textLabel?.text = self?.titles[row]
             return cell
@@ -26,6 +28,13 @@ class ViewController: ReadMoreTableViewController {
             completion(readCount: newTitles.count, hasNext: true)
         }
         registerNib("SampleCell")
+    }
+
+    func clear() {
+        clearData()
+        titles = []
+        tableView.reloadData()
+        tableView.contentOffset = CGPoint(x: 0, y: 0)
     }
 
 }
