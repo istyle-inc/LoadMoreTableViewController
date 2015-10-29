@@ -7,9 +7,11 @@
 
 ## Usage
 
+### データの表示
+
 このクラスを利用する際には以下のメソッドの呼び出し/プロパティの設定を行う必要がある。
 
-### メソッド
+#### メソッド
 
 - `public func registerNib(nibName: String)`
   - 表示するcellのxibファイル名を登録する。
@@ -19,7 +21,7 @@
     readMoreTableViewController.registerNib("FollowCell")
 ```
 
-### プロパティ
+#### プロパティ
 
 - `public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell`
   - cellの設定をする。
@@ -62,6 +64,12 @@
 
 ```swift
     readMoreTableViewController.topCells = [HeaderCell.instantiate()]
+```
+
+### データを最初から再読み込みする
+
+```swift
+    clearData()
 ```
 
 ## Requirements

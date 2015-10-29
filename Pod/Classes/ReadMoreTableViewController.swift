@@ -2,13 +2,13 @@ import UIKit
 
 public class ReadMoreTableViewController: UITableViewController {
 
-    private let defaultCellIdentifier = "DefaultCell"
+    private let mainCellIdentifier = "MainCell"
     private let readMoreCellIdentifier = "ReadMoreCell"
 
     private var hidesFooter = false
-    private var defaultCellCount = 0
+    private var mainCellCount = 0
     private var allCellCount: Int {
-        return topCells.count + defaultCellCount + (hidesFooter ? 0 : 1)
+        return topCells.count + mainCellCount + (hidesFooter ? 0 : 1)
     }
 
     public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell = { cell, row in return cell }
@@ -45,7 +45,7 @@ public class ReadMoreTableViewController: UITableViewController {
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.max, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(defaultCellIdentifier, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
             return configureCellClosure(cell: cell, row: indexPath.row - topCells.count)
         }
     }
@@ -54,12 +54,12 @@ public class ReadMoreTableViewController: UITableViewController {
 
     override public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if isFooter(indexPath) {
-            let currentCount = defaultCellCount
+            let currentCount = mainCellCount
             fetchReadCountClosure(currentCount: currentCount, completion: { [weak self] readCount, hasNext in
                 if !hasNext {
                     self?.hidesFooter = true
                 }
-                self?.defaultCellCount = currentCount + readCount
+                self?.mainCellCount = currentCount + readCount
                 self?.tableView.reloadData()
             })
         }
@@ -68,7 +68,11 @@ public class ReadMoreTableViewController: UITableViewController {
     // MARK: - Public
 
     public func registerNib(nibName: String) {
-        tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: defaultCellIdentifier)
+        tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: mainCellIdentifier)
+    }
+
+    public func clearData() {
+        mainCellCount = 0
     }
 
     // MARK: - Private
@@ -78,7 +82,7 @@ public class ReadMoreTableViewController: UITableViewController {
     }
 
     private func isFooter(indexPath: NSIndexPath) -> Bool {
-        return indexPath.row == topCells.count + defaultCellCount
+        return indexPath.row == topCells.count + mainCellCount
     }
 
 }
