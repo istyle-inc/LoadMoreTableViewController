@@ -42,11 +42,17 @@
   - completionクロージャを呼び出すことで以下の情報を返す。
     - 新たに読み込むcellの数(`readCount`)。
     - また、その次の読み込みがあるかどうか(`hasNext`)。
+  - **`currentCount` と現在のデータ数が一致しているかのチェックが必要。**
+    - データのフェッチ中に `clearData()` をするとデータの不整合が生まれるため。
   - e.g.
 
 ```swift
     readMoreTableViewController.fetchReadCountClosure = { [weak self] currentCount, completion in
         Follow.fetchFollow(currentCount, result: { result in
+            guard currentCount == self?.users.count else {
+                return
+            }
+
             switch result {
             case .Success(let users):
                 self?.users += users

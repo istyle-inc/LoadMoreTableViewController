@@ -24,7 +24,11 @@ class ViewController: ReadMoreTableViewController {
         }
         fetchReadCountClosure = { [weak self] currentCount, completion in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                let newTitles = ["sample", "sample", "sample", "sample", "sample"]
+                guard currentCount == self?.titles.count else {
+                    return
+                }
+
+                let newTitles = ["sample\(currentCount + 1)", "sample\(currentCount + 2)", "sample\(currentCount + 3)", "sample\(currentCount + 4)", "sample\(currentCount + 5)"]
                 self?.titles += newTitles
                 completion(readCount: newTitles.count, hasNext: true)
             }
