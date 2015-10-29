@@ -23,9 +23,11 @@ class ViewController: ReadMoreTableViewController {
             return cell
         }
         fetchReadCountClosure = { [weak self] currentCount, completion in
-            let newTitles = ["sample", "sample", "sample", "sample", "sample"]
-            self?.titles += newTitles
-            completion(readCount: newTitles.count, hasNext: true)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                let newTitles = ["sample", "sample", "sample", "sample", "sample"]
+                self?.titles += newTitles
+                completion(readCount: newTitles.count, hasNext: true)
+            }
         }
         registerNib("SampleCell")
     }
