@@ -72,7 +72,11 @@ public class ReadMoreTableViewController: UITableViewController {
     }
 
     public func clearData() {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: .Top, animated: false)
+        }
         mainCellCount = 0
+        hidesFooter = false
     }
 
     // MARK: - Private

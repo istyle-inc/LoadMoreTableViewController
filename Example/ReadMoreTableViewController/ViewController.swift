@@ -34,7 +34,6 @@ class ViewController: ReadMoreTableViewController {
         clearData()
         titles = []
         tableView.reloadData()
-        tableView.contentOffset = CGPoint(x: 0, y: 0)
     }
 
 }
