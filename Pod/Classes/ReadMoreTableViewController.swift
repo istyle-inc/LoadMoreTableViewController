@@ -5,6 +5,8 @@ public class ReadMoreTableViewController: UITableViewController {
     private let mainCellIdentifier = "MainCell"
     private let readMoreCellIdentifier = "ReadMoreCell"
 
+    private var cellHeights = [NSIndexPath: CGFloat]()
+
     private var hidesFooter = false
     private var mainCellCount = 0
     private var allCellCount: Int {
@@ -28,13 +30,20 @@ public class ReadMoreTableViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: "ReadMoreCell", bundle: NSBundle(forClass: ReadMoreCell.self)), forCellReuseIdentifier: readMoreCellIdentifier)
 
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 50
     }
 
     // MARK: - TableViewDataSource
 
     override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allCellCount
+    }
+
+    public override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if let cachedHeight = cellHeights[indexPath] {
+            return cachedHeight
+        } else {
+            return 50
+        }
     }
 
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -53,6 +62,8 @@ public class ReadMoreTableViewController: UITableViewController {
     // MARK: - TableViewDelegate
 
     override public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cellHeights[indexPath] = cell.frame.height
+
         if isFooter(indexPath) {
             let currentCount = mainCellCount
             fetchReadCountClosure(currentCount: currentCount, completion: { [weak self] readCount, hasNext in
