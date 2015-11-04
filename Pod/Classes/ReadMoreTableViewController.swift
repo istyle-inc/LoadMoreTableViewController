@@ -66,13 +66,17 @@ public class ReadMoreTableViewController: UITableViewController {
 
         if isFooter(indexPath) {
             let currentCount = mainCellCount
-            fetchReadCountClosure(currentCount: currentCount, completion: { [weak self] readCount, hasNext in
-                if !hasNext {
-                    self?.hidesFooter = true
-                }
-                self?.mainCellCount = currentCount + readCount
-                self?.tableView.reloadData()
-            })
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                self.fetchReadCountClosure(currentCount: currentCount, completion: { [weak self] readCount, hasNext in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if !hasNext {
+                            self?.hidesFooter = true
+                        }
+                        self?.mainCellCount = currentCount + readCount
+                        self?.tableView.reloadData()
+                    }
+                })
+            }
         }
     }
 
