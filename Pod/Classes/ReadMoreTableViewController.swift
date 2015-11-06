@@ -8,7 +8,7 @@ public class ReadMoreTableViewController: UITableViewController {
     private var cellHeights = [NSIndexPath: CGFloat]()
 
     private var hidesFooter = false
-    private var mainCellCount = 0
+    public var mainCellCount = 0
     private var allCellCount: Int {
         return topCells.count + mainCellCount
     }
