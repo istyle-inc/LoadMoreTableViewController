@@ -115,26 +115,21 @@ public class ReadMoreTableViewController: UITableViewController {
         let currentCount = mainCellCount
         let currentAllCellCount = allCellCount
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.fetchReadCountClosure(currentCount: currentCount, completion: { [weak self] readCount, hasNext in
+        self.fetchReadCountClosure(currentCount: currentCount, completion: { [weak self] readCount, hasNext in
+            self?.mainCellCount = currentCount + readCount
+            UIView.setAnimationsEnabled(false)
+            self?.tableView.insertRowsAtIndexPaths(
+                Array(currentAllCellCount..<currentAllCellCount + readCount).map{ NSIndexPath(forRow: $0, inSection: 0) },
+                withRowAnimation: .None)
+            UIView.setAnimationsEnabled(true)
 
-                dispatch_async(dispatch_get_main_queue()) {
-                    self?.mainCellCount = currentCount + readCount
-                    UIView.setAnimationsEnabled(false)
-                    self?.tableView.insertRowsAtIndexPaths(
-                        Array(currentAllCellCount..<currentAllCellCount + readCount).map{ NSIndexPath(forRow: $0, inSection: 0) },
-                        withRowAnimation: .None)
-                    UIView.setAnimationsEnabled(true)
-
-                    if !hasNext {
-                        self?.updateFooter(false)
-                    } else {
-                        // To call willDisplayCell delegate to read cells
-                        self?.updateFooter(true)
-                    }
-                }
-            })
-        }
+            if !hasNext {
+                self?.updateFooter(false)
+            } else {
+                // To call willDisplayCell delegate to read cells
+                self?.updateFooter(true)
+            }
+        })
     }
 
     private func isTopCell(indexPath: NSIndexPath) -> Bool {
