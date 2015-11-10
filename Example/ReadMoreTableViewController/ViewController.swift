@@ -12,6 +12,7 @@ import ReadMoreTableViewController
 class ViewController: ReadMoreTableViewController {
 
     private var titles = [String]()
+    private var retryButtonShowCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,16 @@ class ViewController: ReadMoreTableViewController {
                     return
                 }
 
-                let newTitles = ["sample\(currentCount + 1)", "sample\(currentCount + 2)", "sample\(currentCount + 3)", "sample\(currentCount + 4)", "sample\(currentCount + 5)"]
+                // リトライボタン表示テスト
+                if let retryButtonShowCount = self?.retryButtonShowCount {
+                    guard currentCount < 20 * (retryButtonShowCount + 1) else {
+                        self?.showRetryButton()
+                        self?.retryButtonShowCount++
+                        return
+                    }
+                }
+
+                let newTitles = Array(1...5).map{ "sample\(currentCount + $0)" }
                 self?.titles += newTitles
                 completion(readCount: newTitles.count, hasNext: true)
             }
@@ -39,6 +49,7 @@ class ViewController: ReadMoreTableViewController {
     func clear() {
         clearData()
         titles = []
+        retryButtonShowCount = 0
         tableView.reloadData()
     }
 
