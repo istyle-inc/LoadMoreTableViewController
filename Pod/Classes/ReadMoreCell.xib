@@ -10,12 +10,13 @@
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="mQR-KM-Ign" customClass="ReadMoreCell" customModule="ReadMoreTableViewController" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mQR-KM-Ign" id="mpI-ob-KLD">
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mQR-KM-Ign" id="mpI-ob-KLD">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7j-DN-NHO">
+                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7j-DN-NHO">
                         <rect key="frame" x="0.0" y="0.5" width="320" height="43.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="43.5" id="TCS-Rd-pvr"/>
                         </constraints>
@@ -25,20 +26,22 @@
                             <action selector="retryButtonTapped:" destination="mQR-KM-Ign" eventType="touchUpInside" id="Koo-Af-bYJ"/>
                         </connections>
                     </button>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-dH-wzH">
+                    <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-dH-wzH">
                         <rect key="frame" x="150" y="12" width="20" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </activityIndicatorView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="GGh-dH-wzH" secondAttribute="bottom" constant="12" id="DCF-Bg-miD"/>
                     <constraint firstItem="P7j-DN-NHO" firstAttribute="top" secondItem="mpI-ob-KLD" secondAttribute="top" id="EeA-Do-02H"/>
                     <constraint firstItem="P7j-DN-NHO" firstAttribute="leading" secondItem="mpI-ob-KLD" secondAttribute="leading" id="axo-Ug-VvU"/>
-                    <constraint firstItem="GGh-dH-wzH" firstAttribute="top" secondItem="mpI-ob-KLD" secondAttribute="top" constant="12" id="bB7-Oj-4mC"/>
+                    <constraint firstItem="GGh-dH-wzH" firstAttribute="centerY" secondItem="mpI-ob-KLD" secondAttribute="centerY" id="fbf-Nk-Z6F"/>
                     <constraint firstAttribute="bottom" secondItem="P7j-DN-NHO" secondAttribute="bottom" id="iC0-yA-e8W"/>
                     <constraint firstItem="GGh-dH-wzH" firstAttribute="centerX" secondItem="mpI-ob-KLD" secondAttribute="centerX" id="ob8-9g-1Q6"/>
                     <constraint firstAttribute="trailing" secondItem="P7j-DN-NHO" secondAttribute="trailing" id="tIt-ff-fve"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="activityIndecator" destination="GGh-dH-wzH" id="L64-dM-eqB"/>
                 <outlet property="retryButton" destination="P7j-DN-NHO" id="G2J-qD-JqQ"/>
