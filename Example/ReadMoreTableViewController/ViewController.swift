@@ -44,6 +44,8 @@ class ViewController: ReadMoreTableViewController {
             }
         }
         registerNib("SampleCell")
+
+        ReadMoreTableViewController.retryText = "Custom Text"
     }
 
     func clear() {

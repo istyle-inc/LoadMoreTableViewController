@@ -3,7 +3,7 @@ import UIKit
 public class ReadMoreCell: UITableViewCell {
 
     @IBOutlet private weak var activityIndecator: UIActivityIndicatorView!
-    @IBOutlet private weak var retryButton: UIButton!
+    @IBOutlet weak var retryButton: UIButton!
 
     var showsRetryButton = false {
         didSet {

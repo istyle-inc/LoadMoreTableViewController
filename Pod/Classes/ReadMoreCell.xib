@@ -20,8 +20,8 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="43.5" id="TCS-Rd-pvr"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                        <state key="normal" title="↻"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <state key="normal" title="Retry"/>
                         <connections>
                             <action selector="retryButtonTapped:" destination="mQR-KM-Ign" eventType="touchUpInside" id="Koo-Af-bYJ"/>
                         </connections>

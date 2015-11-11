@@ -24,6 +24,9 @@ public class ReadMoreTableViewController: UITableViewController {
         }
     }
 
+    public static var retryText: String?
+    public static var retryImage: UIImage?
+
     // MARK: - Lifecycle
 
     override public func viewDidLoad() {
@@ -66,6 +69,12 @@ public class ReadMoreTableViewController: UITableViewController {
                 self?.readMore()
                 self?.showsRetryButton = false
                 cell.showsRetryButton = false
+            }
+            if let retryText = ReadMoreTableViewController.retryText {
+                cell.retryButton.setTitle(retryText, forState: .Normal)
+            }
+            if let retryImage = ReadMoreTableViewController.retryImage {
+                cell.retryButton.setImage(retryImage, forState: .Normal)
             }
             return cell
         } else if isTopCell(indexPath) {
