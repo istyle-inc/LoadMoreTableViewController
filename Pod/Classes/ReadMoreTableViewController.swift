@@ -101,6 +101,9 @@ public class ReadMoreTableViewController: UITableViewController {
         tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: mainCellIdentifier)
     }
 
+    /**
+     It will show an activity indicator on the top then fetch the data.
+     */
     public func clearData() {
         mainCellCount = 0
         showsRetryButton = false
@@ -113,6 +116,15 @@ public class ReadMoreTableViewController: UITableViewController {
         }
     }
 
+    /**
+     It will refresh the table view after fetching the data.
+     */
+    public func refresh() {
+        mainCellCount = 0
+        showsRetryButton = false
+        readMore(reload: true)
+    }
+
     public func showRetryButton() {
         showsRetryButton = true
         tableView.reloadSections(NSIndexSet(index: readMoreCellSection), withRowAnimation: .None)
@@ -120,19 +132,24 @@ public class ReadMoreTableViewController: UITableViewController {
 
     // MARK: - Private
 
-    private func readMore() {
+    private func readMore(reload reload: Bool = false) {
         let currentCount = mainCellCount
         let currentAllCellCount = allCellCount
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.fetchReadCountClosure(currentCount: currentCount, completion: { [weak self] readCount, hasNext in
+            self.fetchReadCountClosure(currentCount: currentCount) { [weak self] readCount, hasNext in
 
                 dispatch_async(dispatch_get_main_queue()) {
                     self?.mainCellCount = currentCount + readCount
+
                     UIView.setAnimationsEnabled(false)
-                    self?.tableView.insertRowsAtIndexPaths(
-                        Array(currentAllCellCount..<currentAllCellCount + readCount).map{ NSIndexPath(forRow: $0, inSection: 0) },
-                        withRowAnimation: .None)
+                    if reload {
+                        self?.tableView.reloadData()
+                    } else {
+                        self?.tableView.insertRowsAtIndexPaths(
+                            Array(currentAllCellCount..<currentAllCellCount + readCount).map{ NSIndexPath(forRow: $0, inSection: 0) },
+                            withRowAnimation: .None)
+                    }
                     UIView.setAnimationsEnabled(true)
 
                     if !hasNext {
@@ -142,7 +159,7 @@ public class ReadMoreTableViewController: UITableViewController {
                         self?.updateFooter(true)
                     }
                 }
-            })
+            }
         }
     }
 
