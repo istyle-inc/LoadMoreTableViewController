@@ -45,6 +45,12 @@ class ViewController: ReadMoreTableViewController {
         }
         registerNib("SampleCell")
 
+        didSelectRow = { [weak self] row in
+            if let title = self?.titles[row] {
+                print("selected \(title)")
+            }
+        }
+
         ReadMoreTableViewController.retryText = "Custom Text"
     }
 

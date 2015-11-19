@@ -24,6 +24,8 @@ public class ReadMoreTableViewController: UITableViewController {
         }
     }
 
+    public var didSelectRow: (Int -> ())?
+
     public static var retryText: String?
     public static var retryImage: UIImage?
 
@@ -38,6 +40,14 @@ public class ReadMoreTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
 
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRowAtIndexPath(indexPath, animated: animated)
+        }
+    }
+
     // MARK: - TableViewDataSource
 
     public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -49,14 +59,6 @@ public class ReadMoreTableViewController: UITableViewController {
             return (hidesFooter ? 0 : 1)
         } else {
             return allCellCount
-        }
-    }
-
-    public override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let cachedHeight = cellHeights[indexPath] {
-            return cachedHeight
-        } else {
-            return 50
         }
     }
 
@@ -81,7 +83,7 @@ public class ReadMoreTableViewController: UITableViewController {
             return topCells[indexPath.row]
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
-            return configureCellClosure(cell: cell, row: indexPath.row - topCells.count)
+            return configureCellClosure(cell: cell, row: indexPath.row)
         }
     }
 
@@ -93,6 +95,18 @@ public class ReadMoreTableViewController: UITableViewController {
         if isFooter(indexPath) && !showsRetryButton {
             readMore()
         }
+    }
+
+    public override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if let cachedHeight = cellHeights[indexPath] {
+            return cachedHeight
+        } else {
+            return 50
+        }
+    }
+
+    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        didSelectRow?(indexPath.row)
     }
 
     // MARK: - Public
