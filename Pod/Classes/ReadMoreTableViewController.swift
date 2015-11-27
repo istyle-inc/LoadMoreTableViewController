@@ -141,7 +141,7 @@ public class ReadMoreTableViewController: UITableViewController {
 
     public func showRetryButton() {
         showsRetryButton = true
-        tableView.reloadSections(NSIndexSet(index: readMoreCellSection), withRowAnimation: .None)
+        tableView.reloadData()
     }
 
     // MARK: - Private
