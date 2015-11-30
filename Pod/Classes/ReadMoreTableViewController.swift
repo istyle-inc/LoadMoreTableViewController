@@ -11,13 +11,13 @@ public class ReadMoreTableViewController: UITableViewController {
     private var hidesFooter = false
     private var showsRetryButton = false
 
-    public var mainCellCount = 0
     private var allCellCount: Int {
-        return topCells.count + mainCellCount
+        return topCells.count + dataCountClosure()
     }
 
     public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell = { cell, row in return cell }
-    public var fetchReadCountClosure: (currentCount: Int, completion: (readCount: Int, hasNext: Bool) -> ()) -> () = { currentCount, completion in completion(readCount: 0, hasNext: false) }
+    public var fetchReadCountClosure: (currentCount: Int, completion: (hasNext: Bool) -> ()) -> () = { currentCount, completion in completion(hasNext: false) }
+    public var dataCountClosure: () -> Int = { return 0 }
     public var topCells = [UITableViewCell]() {
         didSet {
             tableView.reloadData()
@@ -119,7 +119,6 @@ public class ReadMoreTableViewController: UITableViewController {
      It will show an activity indicator on the top then fetch the data.
      */
     public func clearData() {
-        mainCellCount = 0
         showsRetryButton = false
         tableView.reloadData()
         updateFooter(true)
@@ -134,7 +133,6 @@ public class ReadMoreTableViewController: UITableViewController {
      It will refresh the table view after fetching the data.
      */
     public func refresh() {
-        mainCellCount = 0
         showsRetryButton = false
         readMore(reload: true)
     }
@@ -147,21 +145,23 @@ public class ReadMoreTableViewController: UITableViewController {
     // MARK: - Private
 
     private func readMore(reload reload: Bool = false) {
-        let currentCount = mainCellCount
+        let currentCount = dataCountClosure()
         let currentAllCellCount = allCellCount
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.fetchReadCountClosure(currentCount: currentCount) { [weak self] readCount, hasNext in
+            self.fetchReadCountClosure(currentCount: currentCount) { [weak self] hasNext in
 
                 dispatch_async(dispatch_get_main_queue()) {
-                    self?.mainCellCount = currentCount + readCount
+                    guard let dataCount = self?.dataCountClosure() else {
+                        return
+                    }
 
                     UIView.setAnimationsEnabled(false)
                     if reload {
                         self?.tableView.reloadData()
                     } else {
                         self?.tableView.insertRowsAtIndexPaths(
-                            Array(currentAllCellCount..<currentAllCellCount + readCount).map{ NSIndexPath(forRow: $0, inSection: 0) },
+                            Array(currentAllCellCount..<dataCount).map{ NSIndexPath(forRow: $0, inSection: 0) },
                             withRowAnimation: .None)
                     }
                     UIView.setAnimationsEnabled(true)

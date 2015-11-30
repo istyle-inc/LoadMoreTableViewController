@@ -40,8 +40,11 @@ class ViewController: ReadMoreTableViewController {
 
                 let newTitles = Array(1...5).map{ "sample\(currentCount + $0)" }
                 self?.titles += newTitles
-                completion(readCount: newTitles.count, hasNext: true)
+                completion(hasNext: true)
             }
+        }
+        dataCountClosure = { [weak self] in
+            return self?.titles.count ?? 0
         }
         registerNib("SampleCell")
 
