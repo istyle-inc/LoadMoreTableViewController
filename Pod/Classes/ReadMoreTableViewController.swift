@@ -178,10 +178,10 @@ public class ReadMoreTableViewController: UITableViewController {
                     if reload {
                         self?.tableView.reloadData()
                     } else if let weakSelf = self, mainSection = weakSelf.sectionTypes.indexOf(.Main) {
-                        let newCellCount = weakSelf.dataCountClosure()
-                        let oldCellCount = weakSelf.tableView.numberOfRowsInSection(mainSection)
+                        let newDataCount = weakSelf.dataCountClosure()
+                        let currentDataCount = weakSelf.tableView.numberOfRowsInSection(mainSection)
                         self?.tableView.insertRowsAtIndexPaths(
-                            Array(oldCellCount..<newCellCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
+                            Array(currentDataCount..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
                             withRowAnimation: .None)
                     }
                     UIView.setAnimationsEnabled(true)
