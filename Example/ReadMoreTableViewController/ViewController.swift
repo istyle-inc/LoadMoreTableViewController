@@ -37,9 +37,11 @@ class ViewController: ReadMoreTableViewController {
                     }
                 }
 
-                self?.titles += newTitles
-                completion(hasNext: true)
+                completion(data: newTitles, hasNext: true)
             }
+        }
+        addDataClosure = { [weak self] data in
+            self?.titles += data as! [String]
         }
         dataCountClosure = { [weak self] in
             return self?.titles.count ?? 0
