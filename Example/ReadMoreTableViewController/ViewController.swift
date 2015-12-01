@@ -24,6 +24,8 @@ class ViewController: ReadMoreTableViewController {
             return cell
         }
         fetchDataClosure = { [weak self] completion in
+            let newTitles = Array(1...5).map{ "sample\($0 + (self?.titles.count ?? 0))" }
+
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
 
                 // リトライボタン表示テスト
@@ -35,8 +37,6 @@ class ViewController: ReadMoreTableViewController {
                     }
                 }
 
-                let count = self?.titles.count ?? 0
-                let newTitles = Array(1...5).map{ "sample\($0 + count)" }
                 self?.titles += newTitles
                 completion(hasNext: true)
             }

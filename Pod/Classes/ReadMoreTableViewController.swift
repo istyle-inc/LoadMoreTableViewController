@@ -16,6 +16,7 @@ public class ReadMoreTableViewController: UITableViewController {
 
     private var hidesFooter = false
     private var showsRetryButton = false
+    private var isRequesting = false
 
     public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell = { cell, row in return cell }
     public var fetchDataClosure: (completion: (hasNext: Bool) -> ()) -> () = { completion in completion(hasNext: false) }
@@ -155,6 +156,10 @@ public class ReadMoreTableViewController: UITableViewController {
     // MARK: - Private
 
     private func readMore(reload reload: Bool = false) {
+        guard !isRequesting else {
+            return
+        }
+        isRequesting = true
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             self.fetchDataClosure { [weak self] hasNext in
@@ -179,6 +184,8 @@ public class ReadMoreTableViewController: UITableViewController {
                         self?.updateFooter(true)
                     }
                 }
+
+                self?.isRequesting = false
             }
         }
     }
