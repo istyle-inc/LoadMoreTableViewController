@@ -54,7 +54,7 @@ class ViewController: ReadMoreTableViewController {
             }
         }
 
-        ReadMoreTableViewController.retryText = "Custom Text"
+        ReadMoreTableViewController.retryText = "Custom Retry Text"
     }
 
     func clear() {

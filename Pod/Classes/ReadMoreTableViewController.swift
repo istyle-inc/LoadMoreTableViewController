@@ -150,6 +150,7 @@ public class ReadMoreTableViewController: UITableViewController {
     }
 
     public func showRetryButton() {
+        isRequesting = false
         showsRetryButton = true
         tableView.reloadData()
     }
