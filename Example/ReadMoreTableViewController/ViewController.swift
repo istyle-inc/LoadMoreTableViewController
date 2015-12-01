@@ -23,7 +23,7 @@ class ViewController: ReadMoreTableViewController {
             cell.textLabel?.text = self?.titles[row]
             return cell
         }
-        fetchReadCountClosure = { [weak self] completion in
+        fetchDataClosure = { [weak self] completion in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
 
                 // リトライボタン表示テスト

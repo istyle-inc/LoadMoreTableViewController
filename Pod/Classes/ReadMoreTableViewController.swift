@@ -17,7 +17,7 @@ public class ReadMoreTableViewController: UITableViewController {
     }
 
     public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell = { cell, row in return cell }
-    public var fetchReadCountClosure: (completion: (hasNext: Bool) -> ()) -> () = { completion in completion(hasNext: false) }
+    public var fetchDataClosure: (completion: (hasNext: Bool) -> ()) -> () = { completion in completion(hasNext: false) }
     public var dataCountClosure: () -> Int = { return 0 }
     public var topCells = [UITableViewCell]() {
         didSet {
@@ -148,7 +148,7 @@ public class ReadMoreTableViewController: UITableViewController {
     private func readMore(reload reload: Bool = false) {
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.fetchReadCountClosure { [weak self] hasNext in
+            self.fetchDataClosure { [weak self] hasNext in
 
                 dispatch_async(dispatch_get_main_queue()) {
                     UIView.setAnimationsEnabled(false)
