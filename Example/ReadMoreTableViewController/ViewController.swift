@@ -23,22 +23,20 @@ class ViewController: ReadMoreTableViewController {
             cell.textLabel?.text = self?.titles[row]
             return cell
         }
-        fetchReadCountClosure = { [weak self] currentCount, completion in
+        fetchReadCountClosure = { [weak self] completion in
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                guard currentCount == self?.titles.count else {
-                    return
-                }
 
                 // リトライボタン表示テスト
                 if let retryButtonShowCount = self?.retryButtonShowCount {
-                    guard currentCount < 20 * (retryButtonShowCount + 1) else {
+                    guard self?.titles.count < 20 * (retryButtonShowCount + 1) else {
                         self?.showRetryButton()
                         self?.retryButtonShowCount++
                         return
                     }
                 }
 
-                let newTitles = Array(1...5).map{ "sample\(currentCount + $0)" }
+                let count = self?.titles.count ?? 0
+                let newTitles = Array(1...5).map{ "sample\($0 + count)" }
                 self?.titles += newTitles
                 completion(hasNext: true)
             }

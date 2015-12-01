@@ -4,6 +4,7 @@ public class ReadMoreTableViewController: UITableViewController {
 
     private let mainCellIdentifier = "MainCell"
     private let readMoreCellIdentifier = "ReadMoreCell"
+    private let dataCellSection = 0
     private let readMoreCellSection = 1
 
     private var cellHeights = [NSIndexPath: CGFloat]()
@@ -16,7 +17,7 @@ public class ReadMoreTableViewController: UITableViewController {
     }
 
     public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell = { cell, row in return cell }
-    public var fetchReadCountClosure: (currentCount: Int, completion: (hasNext: Bool) -> ()) -> () = { currentCount, completion in completion(hasNext: false) }
+    public var fetchReadCountClosure: (completion: (hasNext: Bool) -> ()) -> () = { completion in completion(hasNext: false) }
     public var dataCountClosure: () -> Int = { return 0 }
     public var topCells = [UITableViewCell]() {
         didSet {
@@ -145,23 +146,19 @@ public class ReadMoreTableViewController: UITableViewController {
     // MARK: - Private
 
     private func readMore(reload reload: Bool = false) {
-        let currentCount = dataCountClosure()
-        let currentAllCellCount = allCellCount
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.fetchReadCountClosure(currentCount: currentCount) { [weak self] hasNext in
+            self.fetchReadCountClosure { [weak self] hasNext in
 
                 dispatch_async(dispatch_get_main_queue()) {
-                    guard let dataCount = self?.dataCountClosure() else {
-                        return
-                    }
-
                     UIView.setAnimationsEnabled(false)
                     if reload {
                         self?.tableView.reloadData()
-                    } else {
+                    } else if let weakSelf = self {
+                        let newCellCount = weakSelf.allCellCount
+                        let oldCellCount = weakSelf.tableView.numberOfRowsInSection(weakSelf.dataCellSection)
                         self?.tableView.insertRowsAtIndexPaths(
-                            Array(currentAllCellCount..<dataCount).map{ NSIndexPath(forRow: $0, inSection: 0) },
+                            Array(oldCellCount..<newCellCount).map { NSIndexPath(forRow: $0, inSection: weakSelf.dataCellSection) },
                             withRowAnimation: .None)
                     }
                     UIView.setAnimationsEnabled(true)
