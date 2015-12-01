@@ -2,19 +2,20 @@ import UIKit
 
 public class ReadMoreTableViewController: UITableViewController {
 
+    private enum SectionType {
+        case Top
+        case Main
+        case ReadMore
+    }
+
+    private let sectionTypes: [SectionType] = [.Top, .Main, .ReadMore]
     private let mainCellIdentifier = "MainCell"
     private let readMoreCellIdentifier = "ReadMoreCell"
-    private let dataCellSection = 0
-    private let readMoreCellSection = 1
 
     private var cellHeights = [NSIndexPath: CGFloat]()
 
     private var hidesFooter = false
     private var showsRetryButton = false
-
-    private var allCellCount: Int {
-        return topCells.count + dataCountClosure()
-    }
 
     public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell = { cell, row in return cell }
     public var fetchDataClosure: (completion: (hasNext: Bool) -> ()) -> () = { completion in completion(hasNext: false) }
@@ -52,19 +53,30 @@ public class ReadMoreTableViewController: UITableViewController {
     // MARK: - TableViewDataSource
 
     public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return sectionTypes.count
     }
 
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == readMoreCellSection {
+        let sectionType = sectionTypes[section]
+        switch sectionType {
+        case .Top:
+            return topCells.count
+        case .Main:
+            return dataCountClosure()
+        case .ReadMore:
             return (hidesFooter ? 0 : 1)
-        } else {
-            return allCellCount
         }
     }
 
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if isFooter(indexPath) {
+        let sectionType = sectionTypes[indexPath.section]
+        switch sectionType {
+        case .Top:
+            return topCells[indexPath.row]
+        case .Main:
+            let cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
+            return configureCellClosure(cell: cell, row: indexPath.row)
+        case .ReadMore:
             let cell = tableView.dequeueReusableCellWithIdentifier(readMoreCellIdentifier, forIndexPath: indexPath) as! ReadMoreCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.max, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
             cell.showsRetryButton = showsRetryButton
@@ -80,11 +92,6 @@ public class ReadMoreTableViewController: UITableViewController {
                 cell.retryButton.setImage(retryImage, forState: .Normal)
             }
             return cell
-        } else if isTopCell(indexPath) {
-            return topCells[indexPath.row]
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
-            return configureCellClosure(cell: cell, row: indexPath.row)
         }
     }
 
@@ -93,7 +100,7 @@ public class ReadMoreTableViewController: UITableViewController {
     public override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cellHeights[indexPath] = cell.frame.height
 
-        if isFooter(indexPath) && !showsRetryButton {
+        if sectionTypes[indexPath.section] == .ReadMore && !showsRetryButton {
             readMore()
         }
     }
@@ -124,8 +131,10 @@ public class ReadMoreTableViewController: UITableViewController {
         tableView.reloadData()
         updateFooter(true)
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            if self.tableView(self.tableView, numberOfRowsInSection: self.readMoreCellSection) > 0  { // Prevent error "row (0) beyond bounds (0) for section (0)."
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.readMoreCellSection), atScrollPosition: .Top, animated: false)
+            if let readMoreSection = self.sectionTypes.indexOf(.ReadMore) {
+                if self.tableView(self.tableView, numberOfRowsInSection: readMoreSection) > 0  { // Prevent error "row (0) beyond bounds (0) for section (0)."
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: readMoreSection), atScrollPosition: .Top, animated: false)
+                }
             }
         }
     }
@@ -154,11 +163,11 @@ public class ReadMoreTableViewController: UITableViewController {
                     UIView.setAnimationsEnabled(false)
                     if reload {
                         self?.tableView.reloadData()
-                    } else if let weakSelf = self {
-                        let newCellCount = weakSelf.allCellCount
-                        let oldCellCount = weakSelf.tableView.numberOfRowsInSection(weakSelf.dataCellSection)
+                    } else if let weakSelf = self, mainSection = weakSelf.sectionTypes.indexOf(.Main) {
+                        let newCellCount = weakSelf.dataCountClosure()
+                        let oldCellCount = weakSelf.tableView.numberOfRowsInSection(mainSection)
                         self?.tableView.insertRowsAtIndexPaths(
-                            Array(oldCellCount..<newCellCount).map { NSIndexPath(forRow: $0, inSection: weakSelf.dataCellSection) },
+                            Array(oldCellCount..<newCellCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
                             withRowAnimation: .None)
                     }
                     UIView.setAnimationsEnabled(true)
@@ -174,28 +183,24 @@ public class ReadMoreTableViewController: UITableViewController {
         }
     }
 
-    private func isTopCell(indexPath: NSIndexPath) -> Bool {
-        return indexPath.row < topCells.count
-    }
-
-    private func isFooter(indexPath: NSIndexPath) -> Bool {
-        return indexPath.section == readMoreCellSection
-    }
-
     private func updateFooter(show: Bool) {
+        guard let readMoreSection = sectionTypes.indexOf(.ReadMore) else {
+            return
+        }
+
         if show && hidesFooter {
             UIView.setAnimationsEnabled(false)
             hidesFooter = false
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreCellSection)], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreSection)], withRowAnimation: .Fade)
             UIView.setAnimationsEnabled(true)
 
         } else if !show && !hidesFooter {
             hidesFooter = true
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreCellSection)], withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreSection)], withRowAnimation: .Fade)
 
         } else if show && !hidesFooter {
             UIView.setAnimationsEnabled(false)
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreCellSection)], withRowAnimation: .Fade)
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreSection)], withRowAnimation: .Fade)
             UIView.setAnimationsEnabled(true)
         }
     }
