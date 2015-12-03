@@ -22,6 +22,7 @@ public class ReadMoreTableViewController: UITableViewController {
     private var isRequesting = false
 
     public weak var dataSource: ReadMoreTableViewControllerDataSource?
+    public var sourceObjects = [AnyObject]()
     public var topCells = [UITableViewCell]() {
         didSet {
             tableView.reloadData()
@@ -61,7 +62,7 @@ public class ReadMoreTableViewController: UITableViewController {
         case .Top:
             return topCells.count
         case .Main:
-            return dataSource?.numberOfDataInReadMoreTableViewController(self) ?? 0
+            return sourceObjects.count
         case .ReadMore:
             return (hidesFooter ? 0 : 1)
         }
@@ -84,7 +85,7 @@ public class ReadMoreTableViewController: UITableViewController {
                 cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
             }
 
-            if indexPath.row < dataSource?.numberOfDataInReadMoreTableViewController(self) {
+            if indexPath.row < sourceObjects.count {
                 return  dataSource?.readMoreTableViewController(self, configureCell: cell, row: indexPath.row) ?? cell
             } else {
                 return cell
@@ -138,6 +139,7 @@ public class ReadMoreTableViewController: UITableViewController {
     ///         - true: It will show an activity indicator on the top then fetch the data.
     ///         - false: It will refresh the table view after fetching the data.
     public func refreshData(immediately immediately: Bool) {
+        sourceObjects.removeAll()
         showsRetryButton = false
         if immediately {
             tableView.reloadData()
@@ -161,7 +163,7 @@ public class ReadMoreTableViewController: UITableViewController {
         }
         isRequesting = true
 
-        let oldDataCount = dataSource?.numberOfDataInReadMoreTableViewController(self)
+        let oldDataCount = sourceObjects.count
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             self.dataSource?.readMoreTableViewController(self) { [weak self] data, hasNext in
@@ -170,14 +172,14 @@ public class ReadMoreTableViewController: UITableViewController {
                 }
 
                 // Prevent data mismatch when cleared existing data while fetching new data
-                if oldDataCount == self?.dataSource?.numberOfDataInReadMoreTableViewController(weakSelf) {
-                    self?.dataSource?.readMoreTableViewController(weakSelf, addData: data)
+                if oldDataCount == self?.sourceObjects.count {
+                    self?.sourceObjects += data
                 }
 
                 dispatch_async(dispatch_get_main_queue()) {
                     UIView.setAnimationsEnabled(false)
                     if let mainSection = weakSelf.sectionTypes.indexOf(.Main) {
-                        let newDataCount = weakSelf.dataSource?.numberOfDataInReadMoreTableViewController(weakSelf) ?? 0
+                        let newDataCount = weakSelf.sourceObjects.count
                         let currentDataCount = weakSelf.tableView.numberOfRowsInSection(mainSection)
                         if currentDataCount < newDataCount {
                             self?.tableView.insertRowsAtIndexPaths(
