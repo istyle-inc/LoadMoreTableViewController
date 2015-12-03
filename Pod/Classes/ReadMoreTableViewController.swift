@@ -184,9 +184,15 @@ public class ReadMoreTableViewController: UITableViewController {
                     } else if let mainSection = weakSelf.sectionTypes.indexOf(.Main) {
                         let newDataCount = weakSelf.dataSource?.numberOfDataInReadMoreTableViewController(weakSelf) ?? 0
                         let currentDataCount = weakSelf.tableView.numberOfRowsInSection(mainSection)
-                        self?.tableView.insertRowsAtIndexPaths(
-                            Array(currentDataCount..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
-                            withRowAnimation: .None)
+                        if currentDataCount < newDataCount {
+                            self?.tableView.insertRowsAtIndexPaths(
+                                Array(currentDataCount..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
+                                withRowAnimation: .None)
+                        } else {
+                            self?.tableView.deleteRowsAtIndexPaths(
+                                Array(newDataCount..<currentDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
+                                withRowAnimation: .None)
+                        }
                     }
                     UIView.setAnimationsEnabled(true)
 
