@@ -20,6 +20,9 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: "clear")
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .Plain, target: self, action: "refresh")
 
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+
         ReadMoreTableViewController.retryText = "Custom Retry Text"
         dataSource = self
         didSelectRow = { [weak self] row in
@@ -57,6 +60,7 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
         let newTitles = Array(1...5).map { "sample\($0 + titles.count)" }
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            self.refreshControl?.performSelector("endRefreshing", withObject: nil, afterDelay: 0.05) // cf. http://stackoverflow.com/questions/28560068/uirefreshcontrol-endrefreshing-is-not-smooth
 
             // リトライボタン表示テスト
             guard self.titles.count < 20 * (self.retryButtonShowCount + 1) else {
@@ -75,6 +79,7 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
 
     func readMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController, configureCell cell: UITableViewCell, row: Int) -> UITableViewCell {
         cell.textLabel?.text = titles[row]
+        cell.detailTextLabel?.text = NSDate().description
         return cell
     }
 

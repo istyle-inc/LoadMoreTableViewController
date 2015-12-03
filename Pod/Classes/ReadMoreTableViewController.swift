@@ -72,6 +72,7 @@ public class ReadMoreTableViewController: UITableViewController {
         switch sectionType {
         case .Top:
             return topCells[indexPath.row]
+
         case .Main:
             let cell: UITableViewCell
             if let reusableCell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier) {
@@ -82,7 +83,13 @@ public class ReadMoreTableViewController: UITableViewController {
                 }
                 cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
             }
-            return  dataSource?.readMoreTableViewController(self, configureCell: cell, row: indexPath.row) ?? cell
+
+            if indexPath.row < dataSource?.numberOfDataInReadMoreTableViewController(self) {
+                return  dataSource?.readMoreTableViewController(self, configureCell: cell, row: indexPath.row) ?? cell
+            } else {
+                return cell
+            }
+
         case .ReadMore:
             let cell = tableView.dequeueReusableCellWithIdentifier(readMoreCellIdentifier, forIndexPath: indexPath) as! ReadMoreCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.max, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
@@ -169,9 +176,7 @@ public class ReadMoreTableViewController: UITableViewController {
 
                 dispatch_async(dispatch_get_main_queue()) {
                     UIView.setAnimationsEnabled(false)
-                    if reload {
-                        self?.tableView.reloadData()
-                    } else if let mainSection = weakSelf.sectionTypes.indexOf(.Main) {
+                    if let mainSection = weakSelf.sectionTypes.indexOf(.Main) {
                         let newDataCount = weakSelf.dataSource?.numberOfDataInReadMoreTableViewController(weakSelf) ?? 0
                         let currentDataCount = weakSelf.tableView.numberOfRowsInSection(mainSection)
                         if currentDataCount < newDataCount {
@@ -181,6 +186,12 @@ public class ReadMoreTableViewController: UITableViewController {
                         } else {
                             self?.tableView.deleteRowsAtIndexPaths(
                                 Array(newDataCount..<currentDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
+                                withRowAnimation: .None)
+                        }
+
+                        if reload {
+                            self?.tableView.reloadRowsAtIndexPaths(
+                                Array(0..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
                                 withRowAnimation: .None)
                         }
                     }
