@@ -8,6 +8,9 @@ public class ReadMoreTableViewController: UITableViewController {
         case ReadMore
     }
 
+    public static var retryText: String?
+    public static var retryImage: UIImage?
+
     private let sectionTypes: [SectionType] = [.Top, .Main, .ReadMore]
     private let mainCellIdentifier = "MainCell"
     private let readMoreCellIdentifier = "ReadMoreCell"
@@ -18,20 +21,13 @@ public class ReadMoreTableViewController: UITableViewController {
     private var showsRetryButton = false
     private var isRequesting = false
 
-    public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell = { cell, row in return cell }
-    public var fetchDataClosure: (completion: (data: [AnyObject], hasNext: Bool) -> ()) -> () = { completion in completion(data: [], hasNext: false) }
-    public var addDataClosure: (data: [AnyObject]) -> () = { data in }
-    public var dataCountClosure: () -> Int = { return 0 }
+    public weak var dataSource: ReadMoreTableViewControllerDataSource?
     public var topCells = [UITableViewCell]() {
         didSet {
             tableView.reloadData()
         }
     }
-
     public var didSelectRow: (Int -> ())?
-
-    public static var retryText: String?
-    public static var retryImage: UIImage?
 
     // MARK: - Lifecycle
 
@@ -39,6 +35,7 @@ public class ReadMoreTableViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView() // cf. http://stackoverflow.com/questions/1369831/eliminate-extra-separators-below-uitableview-in-iphone-sdk
+
         tableView.registerNib(UINib(nibName: "ReadMoreCell", bundle: NSBundle(forClass: ReadMoreCell.self)), forCellReuseIdentifier: readMoreCellIdentifier)
 
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -64,7 +61,7 @@ public class ReadMoreTableViewController: UITableViewController {
         case .Top:
             return topCells.count
         case .Main:
-            return dataCountClosure()
+            return dataSource?.numberOfDataInReadMoreTableViewController(self) ?? 0
         case .ReadMore:
             return (hidesFooter ? 0 : 1)
         }
@@ -76,8 +73,16 @@ public class ReadMoreTableViewController: UITableViewController {
         case .Top:
             return topCells[indexPath.row]
         case .Main:
-            let cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
-            return configureCellClosure(cell: cell, row: indexPath.row)
+            let cell: UITableViewCell
+            if let reusableCell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier) {
+                cell = reusableCell
+            } else {
+                if let nibName = dataSource?.nibNameForReadMoreTableViewController(self) {
+                    tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: mainCellIdentifier)
+                }
+                cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
+            }
+            return  dataSource?.readMoreTableViewController(self, configureCell: cell, row: indexPath.row) ?? cell
         case .ReadMore:
             let cell = tableView.dequeueReusableCellWithIdentifier(readMoreCellIdentifier, forIndexPath: indexPath) as! ReadMoreCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.max, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
@@ -121,10 +126,6 @@ public class ReadMoreTableViewController: UITableViewController {
 
     // MARK: - Public
 
-    public func registerNib(nibName: String) {
-        tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: mainCellIdentifier)
-    }
-
     /**
      It will show an activity indicator on the top then fetch the data.
      */
@@ -163,22 +164,25 @@ public class ReadMoreTableViewController: UITableViewController {
         }
         isRequesting = true
 
-        let oldDataCount = dataCountClosure()
+        let oldDataCount = dataSource?.numberOfDataInReadMoreTableViewController(self)
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.fetchDataClosure { [weak self] data, hasNext in
+            self.dataSource?.readMoreTableViewController(self) { [weak self] data, hasNext in
+                guard let weakSelf = self else {
+                    return
+                }
 
                 // Prevent data mismatch when cleared existing data while fetching new data
-                if oldDataCount == self?.dataCountClosure() {
-                    self?.addDataClosure(data: data)
+                if oldDataCount == self?.dataSource?.numberOfDataInReadMoreTableViewController(weakSelf) {
+                    self?.dataSource?.readMoreTableViewController(weakSelf, addData: data)
                 }
 
                 dispatch_async(dispatch_get_main_queue()) {
                     UIView.setAnimationsEnabled(false)
                     if reload {
                         self?.tableView.reloadData()
-                    } else if let weakSelf = self, mainSection = weakSelf.sectionTypes.indexOf(.Main) {
-                        let newDataCount = weakSelf.dataCountClosure()
+                    } else if let mainSection = weakSelf.sectionTypes.indexOf(.Main) {
+                        let newDataCount = weakSelf.dataSource?.numberOfDataInReadMoreTableViewController(weakSelf) ?? 0
                         let currentDataCount = weakSelf.tableView.numberOfRowsInSection(mainSection)
                         self?.tableView.insertRowsAtIndexPaths(
                             Array(currentDataCount..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },

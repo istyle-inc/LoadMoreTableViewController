@@ -9,7 +9,7 @@
 import UIKit
 import ReadMoreTableViewController
 
-class ViewController: ReadMoreTableViewController {
+class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDataSource {
 
     private var titles = [String]()
     private var retryButtonShowCount = 0
@@ -19,49 +19,55 @@ class ViewController: ReadMoreTableViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: "clear")
 
-        configureCellClosure = { [weak self] cell, row in
-            cell.textLabel?.text = self?.titles[row]
-            return cell
-        }
-        fetchDataClosure = { [weak self] completion in
-            let newTitles = Array(1...5).map{ "sample\($0 + (self?.titles.count ?? 0))" }
-
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-
-                // リトライボタン表示テスト
-                if let retryButtonShowCount = self?.retryButtonShowCount {
-                    guard self?.titles.count < 20 * (retryButtonShowCount + 1) else {
-                        self?.showRetryButton()
-                        self?.retryButtonShowCount++
-                        return
-                    }
-                }
-
-                completion(data: newTitles, hasNext: true)
-            }
-        }
-        addDataClosure = { [weak self] data in
-            self?.titles += data as! [String]
-        }
-        dataCountClosure = { [weak self] in
-            return self?.titles.count ?? 0
-        }
-        registerNib("SampleCell")
-
+        ReadMoreTableViewController.retryText = "Custom Retry Text"
+        dataSource = self
         didSelectRow = { [weak self] row in
             if let title = self?.titles[row] {
                 print("selected \(title)")
             }
         }
-
-        ReadMoreTableViewController.retryText = "Custom Retry Text"
     }
 
     func clear() {
-        clearData()
         titles = []
+        clearData()
+
         retryButtonShowCount = 0
-        tableView.reloadData()
+    }
+
+    // MARK: - ReadMoreTableViewControllerDataSource
+
+    func nibNameForReadMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController) -> String {
+        return "SampleCell"
+    }
+
+    func numberOfDataInReadMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController) -> Int {
+        return titles.count
+    }
+
+    func readMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController, fetchData completion: (data: [AnyObject], hasNext: Bool) -> ()) {
+        let newTitles = Array(1...5).map { "sample\($0 + titles.count)" }
+
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+
+            // リトライボタン表示テスト
+            guard self.titles.count < 20 * (self.retryButtonShowCount + 1) else {
+                self.showRetryButton()
+                self.retryButtonShowCount++
+                return
+            }
+
+            completion(data: newTitles, hasNext: true)
+        }
+    }
+
+    func readMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController, addData data: [AnyObject]) {
+        titles += data as! [String]
+    }
+
+    func readMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController, configureCell cell: UITableViewCell, row: Int) -> UITableViewCell {
+        cell.textLabel?.text = titles[row]
+        return cell
     }
 
 }
