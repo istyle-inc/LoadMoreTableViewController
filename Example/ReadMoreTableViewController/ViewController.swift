@@ -18,7 +18,7 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: "clear")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .Plain, target: self, action: "refreshData")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .Plain, target: self, action: "refresh")
 
         ReadMoreTableViewController.retryText = "Custom Retry Text"
         dataSource = self
@@ -31,14 +31,14 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
 
     func clear() {
         titles = []
-        clearData()
+        refreshData(immediately: true)
 
         retryButtonShowCount = 0
     }
 
-    func refreshData() {
+    func refresh() {
         titles = []
-        refresh()
+        refreshData(immediately: false)
 
         retryButtonShowCount = 0
     }

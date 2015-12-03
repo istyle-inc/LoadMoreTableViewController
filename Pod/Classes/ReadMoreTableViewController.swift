@@ -126,28 +126,18 @@ public class ReadMoreTableViewController: UITableViewController {
 
     // MARK: - Public
 
-    /**
-     It will show an activity indicator on the top then fetch the data.
-     */
-    public func clearData() {
+    /// - Parameters:
+    ///     - immediately:
+    ///         - true: It will show an activity indicator on the top then fetch the data.
+    ///         - false: It will refresh the table view after fetching the data.
+    public func refreshData(immediately immediately: Bool) {
         showsRetryButton = false
-        tableView.reloadData()
-        updateFooter(true)
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            if let readMoreSection = self.sectionTypes.indexOf(.ReadMore) {
-                if self.tableView(self.tableView, numberOfRowsInSection: readMoreSection) > 0  { // Prevent error "row (0) beyond bounds (0) for section (0)."
-                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: readMoreSection), atScrollPosition: .Top, animated: false)
-                }
-            }
+        if immediately {
+            tableView.reloadData()
+            updateFooter(true)
+        } else {
+            readMore(reload: true)
         }
-    }
-
-    /**
-     It will refresh the table view after fetching the data.
-     */
-    public func refresh() {
-        showsRetryButton = false
-        readMore(reload: true)
     }
 
     public func showRetryButton() {
