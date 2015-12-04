@@ -1,6 +1,6 @@
 import UIKit
 
-public class ReadMoreCell: UITableViewCell {
+public class FooterCell: UITableViewCell {
 
     @IBOutlet private weak var activityIndecator: UIActivityIndicatorView!
     @IBOutlet weak var retryButton: UIButton!

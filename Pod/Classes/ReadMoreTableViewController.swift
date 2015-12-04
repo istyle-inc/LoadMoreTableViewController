@@ -5,14 +5,14 @@ public class ReadMoreTableViewController: UITableViewController {
     private enum SectionType {
         case Top
         case Main
-        case ReadMore
+        case Footer
     }
 
     public static var retryText: String?
     public static var retryImage: UIImage?
 
-    private let sectionTypes: [SectionType] = [.Top, .Main, .ReadMore]
-    private let readMoreCellIdentifier = "ReadMoreCell"
+    private let sectionTypes: [SectionType] = [.Top, .Main, .Footer]
+    private let footerCellIdentifier = "FooterCell"
 
     private var cellHeights = [NSIndexPath: CGFloat]()
 
@@ -40,7 +40,7 @@ public class ReadMoreTableViewController: UITableViewController {
 
         tableView.tableFooterView = UIView() // cf. http://stackoverflow.com/questions/1369831/eliminate-extra-separators-below-uitableview-in-iphone-sdk
 
-        tableView.registerNib(UINib(nibName: "ReadMoreCell", bundle: NSBundle(forClass: ReadMoreCell.self)), forCellReuseIdentifier: readMoreCellIdentifier)
+        tableView.registerNib(UINib(nibName: "FooterCell", bundle: NSBundle(forClass: FooterCell.self)), forCellReuseIdentifier: footerCellIdentifier)
 
         tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -66,7 +66,7 @@ public class ReadMoreTableViewController: UITableViewController {
             return topCells.count
         case .Main:
             return sourceObjects.count
-        case .ReadMore:
+        case .Footer:
             return (hidesFooter ? 0 : 1)
         }
     }
@@ -85,8 +85,8 @@ public class ReadMoreTableViewController: UITableViewController {
                 return cell
             }
 
-        case .ReadMore:
-            let cell = tableView.dequeueReusableCellWithIdentifier(readMoreCellIdentifier, forIndexPath: indexPath) as! ReadMoreCell
+        case .Footer:
+            let cell = tableView.dequeueReusableCellWithIdentifier(footerCellIdentifier, forIndexPath: indexPath) as! FooterCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.max, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
             cell.showsRetryButton = showsRetryButton
             cell.retryButtonTapped = { [weak self] in
@@ -109,7 +109,7 @@ public class ReadMoreTableViewController: UITableViewController {
     public override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cellHeights[indexPath] = cell.frame.height
 
-        if sectionTypes[indexPath.section] == .ReadMore && !showsRetryButton {
+        if sectionTypes[indexPath.section] == .Footer && !showsRetryButton {
             readMore()
         }
     }
@@ -146,7 +146,7 @@ public class ReadMoreTableViewController: UITableViewController {
     public func showRetryButton() {
         isRequesting = false
         showsRetryButton = true
-        tableView.reloadData()
+        updateFooter(true)
     }
 
     // MARK: - Private
@@ -207,23 +207,23 @@ public class ReadMoreTableViewController: UITableViewController {
     }
 
     private func updateFooter(show: Bool) {
-        guard let readMoreSection = sectionTypes.indexOf(.ReadMore) else {
+        guard let footerSection = sectionTypes.indexOf(.Footer) else {
             return
         }
 
         if show && hidesFooter {
             UIView.setAnimationsEnabled(false)
             hidesFooter = false
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreSection)], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
             UIView.setAnimationsEnabled(true)
 
         } else if !show && !hidesFooter {
             hidesFooter = true
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreSection)], withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
 
         } else if show && !hidesFooter {
             UIView.setAnimationsEnabled(false)
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: readMoreSection)], withRowAnimation: .Fade)
+            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
             UIView.setAnimationsEnabled(true)
         }
     }
