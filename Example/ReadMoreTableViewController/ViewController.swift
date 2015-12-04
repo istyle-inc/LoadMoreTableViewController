@@ -9,7 +9,7 @@
 import UIKit
 import ReadMoreTableViewController
 
-class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDataSource {
+class ViewController: ReadMoreTableViewController {
 
     private var retryButtonShowCount = 0
 
@@ -25,7 +25,27 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
         tableView.registerNib(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
 
         ReadMoreTableViewController.retryText = "Custom Retry Text"
-        dataSource = self
+        fetchSourceObjects = { [weak self] completion in
+            let newTitles = Array(1...5).map { "sample\($0 + (self?.sourceObjects.count ?? 0))" }
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+                self?.refreshControl?.performSelector("endRefreshing", withObject: nil, afterDelay: 0.05) // cf. http://stackoverflow.com/questions/28560068/uirefreshcontrol-endrefreshing-is-not-smooth
+
+                // リトライボタン表示テスト
+                guard self?.sourceObjects.count < 20 * ((self?.retryButtonShowCount ?? 0) + 1) else {
+                    self?.showRetryButton()
+                    self?.retryButtonShowCount++
+                    return
+                }
+
+                completion(sourceObjects: newTitles, hasNext: true)
+            }
+        }
+        configureCell = { [weak self] cell, row in
+            cell.textLabel?.text = self?.sourceObjects[row] as? String
+            cell.detailTextLabel?.text = NSDate().description
+            return cell
+        }
         didSelectRow = { [weak self] row in
             if let title = self?.sourceObjects[row] as? String {
                 print("selected \(title)")
@@ -43,31 +63,6 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
         refreshData(immediately: false)
 
         retryButtonShowCount = 0
-    }
-
-    // MARK: - ReadMoreTableViewControllerDataSource
-
-    func readMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController, fetchData completion: (data: [AnyObject], hasNext: Bool) -> ()) {
-        let newTitles = Array(1...5).map { "sample\($0 + sourceObjects.count)" }
-
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            self.refreshControl?.performSelector("endRefreshing", withObject: nil, afterDelay: 0.05) // cf. http://stackoverflow.com/questions/28560068/uirefreshcontrol-endrefreshing-is-not-smooth
-
-            // リトライボタン表示テスト
-            guard self.sourceObjects.count < 20 * (self.retryButtonShowCount + 1) else {
-                self.showRetryButton()
-                self.retryButtonShowCount++
-                return
-            }
-
-            completion(data: newTitles, hasNext: true)
-        }
-    }
-
-    func readMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController, configureCell cell: UITableViewCell, row: Int) -> UITableViewCell {
-        cell.textLabel?.text = sourceObjects[row] as? String
-        cell.detailTextLabel?.text = NSDate().description
-        return cell
     }
 
 }

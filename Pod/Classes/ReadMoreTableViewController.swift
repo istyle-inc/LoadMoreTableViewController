@@ -20,7 +20,6 @@ public class ReadMoreTableViewController: UITableViewController {
     private var showsRetryButton = false
     private var isRequesting = false
 
-    public weak var dataSource: ReadMoreTableViewControllerDataSource?
     public var cellIdentifier = "Cell"
     public var sourceObjects = [AnyObject]()
     public var topCells = [UITableViewCell]() {
@@ -28,6 +27,10 @@ public class ReadMoreTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+
+    public var fetchSourceObjects: (completion: (sourceObjects: [AnyObject], hasNext: Bool) -> ()) -> () = { _ in }
+    public var configureCell: (cell: UITableViewCell, row: Int) -> UITableViewCell = { _ in return UITableViewCell() }
+
     public var didSelectRow: (Int -> ())?
 
     // MARK: - Lifecycle
@@ -77,7 +80,7 @@ public class ReadMoreTableViewController: UITableViewController {
         case .Main:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             if indexPath.row < sourceObjects.count {
-                return  dataSource?.readMoreTableViewController(self, configureCell: cell, row: indexPath.row) ?? cell
+                return configureCell(cell: cell, row: indexPath.row)
             } else {
                 return cell
             }
@@ -157,14 +160,14 @@ public class ReadMoreTableViewController: UITableViewController {
         let oldDataCount = sourceObjects.count
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            self.dataSource?.readMoreTableViewController(self) { [weak self] data, hasNext in
+            self.fetchSourceObjects() { [weak self] sourceObjects, hasNext in
                 guard let weakSelf = self else {
                     return
                 }
 
                 // Prevent data mismatch when cleared existing data while fetching new data
                 if oldDataCount == self?.sourceObjects.count {
-                    self?.sourceObjects += data
+                    self?.sourceObjects += sourceObjects
                 }
 
                 dispatch_async(dispatch_get_main_queue()) {
