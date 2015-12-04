@@ -22,6 +22,8 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
 
+        tableView.registerNib(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
+
         ReadMoreTableViewController.retryText = "Custom Retry Text"
         dataSource = self
         didSelectRow = { [weak self] row in
@@ -44,10 +46,6 @@ class ViewController: ReadMoreTableViewController, ReadMoreTableViewControllerDa
     }
 
     // MARK: - ReadMoreTableViewControllerDataSource
-
-    func nibNameForReadMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController) -> String {
-        return "SampleCell"
-    }
 
     func readMoreTableViewController(readMoreTableViewController: ReadMoreTableViewController, fetchData completion: (data: [AnyObject], hasNext: Bool) -> ()) {
         let newTitles = Array(1...5).map { "sample\($0 + sourceObjects.count)" }

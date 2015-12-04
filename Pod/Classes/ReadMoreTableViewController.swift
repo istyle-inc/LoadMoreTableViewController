@@ -12,7 +12,6 @@ public class ReadMoreTableViewController: UITableViewController {
     public static var retryImage: UIImage?
 
     private let sectionTypes: [SectionType] = [.Top, .Main, .ReadMore]
-    private let mainCellIdentifier = "MainCell"
     private let readMoreCellIdentifier = "ReadMoreCell"
 
     private var cellHeights = [NSIndexPath: CGFloat]()
@@ -22,6 +21,7 @@ public class ReadMoreTableViewController: UITableViewController {
     private var isRequesting = false
 
     public weak var dataSource: ReadMoreTableViewControllerDataSource?
+    public var cellIdentifier = "Cell"
     public var sourceObjects = [AnyObject]()
     public var topCells = [UITableViewCell]() {
         didSet {
@@ -75,16 +75,7 @@ public class ReadMoreTableViewController: UITableViewController {
             return topCells[indexPath.row]
 
         case .Main:
-            let cell: UITableViewCell
-            if let reusableCell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier) {
-                cell = reusableCell
-            } else {
-                if let nibName = dataSource?.nibNameForReadMoreTableViewController(self) {
-                    tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: mainCellIdentifier)
-                }
-                cell = tableView.dequeueReusableCellWithIdentifier(mainCellIdentifier, forIndexPath: indexPath)
-            }
-
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
             if indexPath.row < sourceObjects.count {
                 return  dataSource?.readMoreTableViewController(self, configureCell: cell, row: indexPath.row) ?? cell
             } else {
