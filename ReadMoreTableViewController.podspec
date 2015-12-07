@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "ReadMoreTableViewController"
-  s.version          = "0.1.10"
+  s.version          = "0.2.0"
   s.summary          = "Let's read more readily."
 
 # This description is used to generate tags and improve search results.

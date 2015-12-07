@@ -9,62 +9,51 @@
 
 ### データの表示
 
-このクラスを利用する際には以下のメソッドの呼び出し/プロパティの設定を行う必要がある。
+ReadMoreTableViewControllerを利用するには以下の設定を行う必要がある。
 
-#### メソッド
+#### Cellの用意
 
-- `public func registerNib(nibName: String)`
-    - 表示するcellのxibファイル名を登録する。
-    - e.g.
+追加読み込みするCellを `registerNib()` したり、Storyboard上に用意する。
+その際、プロパティ `public var cellReuseIdentifier` にCellのIdentifierを合わせる必要がある。
+CellはAutoLayoutを使用すれば自動でCellの高さが可変する。
 
-```swift
-    readMoreTableViewController.registerNib("FollowCell")
-```
+#### クロージャの設定
 
-#### プロパティ
-
-- `public var configureCellClosure: (cell: UITableViewCell, row: Int) -> UITableViewCell`
-    - cellの設定をする。
-    - e.g.
-
-```swift
-    readMoreTableViewController.configureCellClosure = { [weak self] cell, row in
-        if let cell = cell as? FollowCell {
-            let user = self?.users[row]
-            cell.title.text = user.name
-        }
-        return cell
-    }
-```
-
-- `public var fetchReadCountClosure: (currentCount: Int, completion: (readCount: Int, hasNext: Bool) -> ()) -> ()`
+- `public var fetchSourceObjects: (completion: (sourceObjects: [AnyObject], hasNext: Bool) -> ()) -> ()`
     - このクロージャ内で新しいデータをフェッチする。
     - completionクロージャを呼び出すことで以下の情報を返す。
-        - 新たに読み込むcellの数(`readCount`)。
-        - また、その次の読み込みがあるかどうか(`hasNext`)。
-    - **`currentCount` と現在のデータ数が一致しているかのチェックが必要。**
-        - データのフェッチ中に `clearData()` をするとデータの不整合が生まれるため。
+        - 新たに取得したデータ(`sourceObjects`)。
+        - 次の読み込みがあるかどうか(`hasNext`)。
     - e.g.
 
 ```swift
-    readMoreTableViewController.fetchReadCountClosure = { [weak self] currentCount, completion in
+    readMoreTableViewController.fetchSourceObjects = { [weak self] completion in
         Follow.fetchFollow(currentCount, result: { result in
-            guard currentCount == self?.users.count else {
-                return
-            }
-
             switch result {
             case .Success(let users):
-                self?.users += users
-                completion(readCount: users.count, hasNext: true)
+                completion(sourceObjects: users, hasNext: true)
             case .Failure(_):
-                break
+                readMoreTableViewController.showRetryButton()
             }
         })
     }
 ```
 
-- `public var topCells: UITableViewCell`
+- `public var configureCell: (cell: UITableViewCell, row: Int) -> UITableViewCell`
+    - cellの設定をする。
+    - e.g.
+
+```swift
+    readMoreTableViewController.configureCell = { [weak self] cell, row in
+        if let cell = cell as? FollowCell {
+            let user = readMoreTableViewController.sourceObjects[row] as? User
+            cell.title.text = user?.name
+        }
+        return cell
+    }
+```
+
+- `public var topCells: UITableViewCell` (オプション)
     - TableViewの上部に、追加読み込みするcellとは別のcellを表示する。
     - e.g.
 
@@ -74,12 +63,16 @@
 
 ### データを最初から再読み込みする
 
-- `public func clearData()`
-    - tableViewを空にし、Activity Indicator をトップに配置してデータ取得処理を走らせる。
+- `public func refreshData(immediately immediately: Bool)`
+    - immediately: true
+        - tableViewを空にし、Activity Indicator をトップに配置してデータ取得処理を走らせる。
+    - immediately: false
+        - 1件目からのデータを取得した後にtableViewを更新する。
+        - `UIRefreshControl` を使う際に、ReadMoreTableViewControllerの Activity Indicator を表示させないために用意。
 
-- `public func refresh()`
-    - 1件目からのデータを取得した後にtableViewをreloadData()する。
-    - `UIRefreshControl` を使う際に、ReadMoreTableViewControllerの Activity Indicator を表示させないために用意。
+### データ管理
+
+取得したデータは `public var sourceObjects = [AnyObject]()` の配列に入る。
 
 ### その他設定
 
