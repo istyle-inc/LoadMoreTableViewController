@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0710"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "ReadMoreTableViewController_Example.app"
-               BlueprintName = "ReadMoreTableViewController_Example"
-               ReferencedContainer = "container:ReadMoreTableViewController.xcodeproj">
+               BuildableName = "LoadMoreTableViewController_Example.app"
+               BlueprintName = "LoadMoreTableViewController_Example"
+               ReferencedContainer = "container:LoadMoreTableViewController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "ReadMoreTableViewController_Tests.xctest"
-               BlueprintName = "ReadMoreTableViewController_Tests"
-               ReferencedContainer = "container:ReadMoreTableViewController.xcodeproj">
+               BuildableName = "LoadMoreTableViewController_Tests.xctest"
+               BlueprintName = "LoadMoreTableViewController_Tests"
+               ReferencedContainer = "container:LoadMoreTableViewController.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "ReadMoreTableViewController_Tests.xctest"
-               BlueprintName = "ReadMoreTableViewController_Tests"
-               ReferencedContainer = "container:ReadMoreTableViewController.xcodeproj">
+               BuildableName = "LoadMoreTableViewController_Tests.xctest"
+               BlueprintName = "LoadMoreTableViewController_Tests"
+               ReferencedContainer = "container:LoadMoreTableViewController.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ReadMoreTableViewController_Example.app"
-            BlueprintName = "ReadMoreTableViewController_Example"
-            ReferencedContainer = "container:ReadMoreTableViewController.xcodeproj">
+            BuildableName = "LoadMoreTableViewController_Example.app"
+            BlueprintName = "LoadMoreTableViewController_Example"
+            ReferencedContainer = "container:LoadMoreTableViewController.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ReadMoreTableViewController_Example.app"
-            BlueprintName = "ReadMoreTableViewController_Example"
-            ReferencedContainer = "container:ReadMoreTableViewController.xcodeproj">
+            BuildableName = "LoadMoreTableViewController_Example.app"
+            BlueprintName = "LoadMoreTableViewController_Example"
+            ReferencedContainer = "container:LoadMoreTableViewController.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "ReadMoreTableViewController_Example.app"
-            BlueprintName = "ReadMoreTableViewController_Example"
-            ReferencedContainer = "container:ReadMoreTableViewController.xcodeproj">
+            BuildableName = "LoadMoreTableViewController_Example.app"
+            BlueprintName = "LoadMoreTableViewController_Example"
+            ReferencedContainer = "container:LoadMoreTableViewController.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

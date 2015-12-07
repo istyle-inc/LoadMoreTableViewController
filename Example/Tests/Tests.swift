@@ -1,3 +1,1 @@
-// https://github.com/Quick/Quick
-
-import ReadMoreTableViewController
+import LoadMoreTableViewController
