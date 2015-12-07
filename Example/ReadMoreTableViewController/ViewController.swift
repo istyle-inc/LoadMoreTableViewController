@@ -9,9 +9,12 @@
 import UIKit
 import ReadMoreTableViewController
 
-class ViewController: ReadMoreTableViewController {
+func delay(delay: NSTimeInterval, mainThread: Bool = true, block: () -> ()) {
+    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
+    dispatch_after(time, dispatch_get_main_queue(), block)
+}
 
-    private var retryButtonShowCount = 0
+class ViewController: ReadMoreTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +29,20 @@ class ViewController: ReadMoreTableViewController {
 
         ReadMoreTableViewController.retryText = "Custom Retry Text"
         fetchSourceObjects = { [weak self] completion in
-            let newTitles = Array(1...5).map { "sample\($0 + (self?.sourceObjects.count ?? 0))" }
+            let newNumbers = Array(1...5).map { $0 + (self?.sourceObjects.count ?? 0) }
 
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            delay(1) { // Pretend to fetch data
                 self?.refreshControl?.performSelector("endRefreshing", withObject: nil, afterDelay: 0.05) // cf. http://stackoverflow.com/questions/28560068/uirefreshcontrol-endrefreshing-is-not-smooth
 
-                // リトライボタン表示テスト
-                guard self?.sourceObjects.count < 20 * ((self?.retryButtonShowCount ?? 0) + 1) else {
-                    self?.showRetryButton()
-                    self?.retryButtonShowCount++
-                    return
+                // Test retry button
+                let showRetryButton = newNumbers.filter { $0 % 20 == 0 }.count > 0
+                if showRetryButton {
+                    delay(0.1) {
+                        self?.showRetryButton()
+                    }
                 }
 
+                let newTitles = newNumbers.map { "sample\($0)" }
                 completion(sourceObjects: newTitles, hasNext: true)
             }
         }
@@ -55,14 +60,10 @@ class ViewController: ReadMoreTableViewController {
 
     func clear() {
         refreshData(immediately: true)
-
-        retryButtonShowCount = 0
     }
 
     func refresh() {
         refreshData(immediately: false)
-
-        retryButtonShowCount = 0
     }
 
 }
