@@ -1,15 +1,15 @@
-# ReadMoreTableViewController
+# LoadMoreTableViewController
 
-[![CI Status](http://img.shields.io/travis/mishimay/ReadMoreTableViewController.svg?style=flat)](https://travis-ci.org/mishimay/ReadMoreTableViewController)
-[![Version](https://img.shields.io/cocoapods/v/ReadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/ReadMoreTableViewController)
-[![License](https://img.shields.io/cocoapods/l/ReadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/ReadMoreTableViewController)
-[![Platform](https://img.shields.io/cocoapods/p/ReadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/ReadMoreTableViewController)
+[![CI Status](http://img.shields.io/travis/mishimay/LoadMoreTableViewController.svg?style=flat)](https://travis-ci.org/mishimay/LoadMoreTableViewController)
+[![Version](https://img.shields.io/cocoapods/v/LoadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/LoadMoreTableViewController)
+[![License](https://img.shields.io/cocoapods/l/LoadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/LoadMoreTableViewController)
+[![Platform](https://img.shields.io/cocoapods/p/LoadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/LoadMoreTableViewController)
 
 ## Usage
 
 ### データの表示
 
-ReadMoreTableViewControllerを利用するには以下の設定を行う必要がある。
+LoadMoreTableViewControllerを利用するには以下の設定を行う必要がある。
 
 #### Cellの用意
 
@@ -27,13 +27,13 @@ CellはAutoLayoutを使用すれば自動でCellの高さが可変する。
     - e.g.
 
 ```swift
-    readMoreTableViewController.fetchSourceObjects = { [weak self] completion in
+    loadMoreTableViewController.fetchSourceObjects = { [weak self] completion in
         Follow.fetchFollow(currentCount, result: { result in
             switch result {
             case .Success(let users):
                 completion(sourceObjects: users, hasNext: true)
             case .Failure(_):
-                readMoreTableViewController.showRetryButton()
+                loadMoreTableViewController.showRetryButton()
             }
         })
     }
@@ -44,9 +44,9 @@ CellはAutoLayoutを使用すれば自動でCellの高さが可変する。
     - e.g.
 
 ```swift
-    readMoreTableViewController.configureCell = { [weak self] cell, row in
+    loadMoreTableViewController.configureCell = { [weak self] cell, row in
         if let cell = cell as? FollowCell {
-            let user = readMoreTableViewController.sourceObjects[row] as? User
+            let user = loadMoreTableViewController.sourceObjects[row] as? User
             cell.title.text = user?.name
         }
         return cell
@@ -58,7 +58,7 @@ CellはAutoLayoutを使用すれば自動でCellの高さが可変する。
     - e.g.
 
 ```swift
-    readMoreTableViewController.topCells = [HeaderCell.instantiate()]
+    loadMoreTableViewController.topCells = [HeaderCell.instantiate()]
 ```
 
 ### データを最初から再読み込みする
@@ -68,7 +68,7 @@ CellはAutoLayoutを使用すれば自動でCellの高さが可変する。
         - tableViewを空にし、Activity Indicator をトップに配置してデータ取得処理を走らせる。
     - immediately: false
         - 1件目からのデータを取得した後にtableViewを更新する。
-        - `UIRefreshControl` を使う際に、ReadMoreTableViewControllerの Activity Indicator を表示させないために用意。
+        - `UIRefreshControl` を使う際に、LoadMoreTableViewControllerの Activity Indicator を表示させないために用意。
 
 ### データ管理
 
@@ -92,11 +92,11 @@ CellはAutoLayoutを使用すれば自動でCellの高さが可変する。
 
 ## Installation
 
-ReadMoreTableViewController is available through [CocoaPods](http://cocoapods.org). To install
+LoadMoreTableViewController is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "ReadMoreTableViewController"
+pod "LoadMoreTableViewController"
 ```
 
 ## Author
@@ -105,4 +105,4 @@ mishimay, mishimay@istyle.co.jp
 
 ## License
 
-ReadMoreTableViewController is available under the MIT license. See the LICENSE file for more info.
+LoadMoreTableViewController is available under the MIT license. See the LICENSE file for more info.
