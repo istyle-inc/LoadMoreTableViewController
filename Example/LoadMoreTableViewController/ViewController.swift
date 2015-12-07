@@ -14,7 +14,7 @@ func delay(delay: NSTimeInterval, mainThread: Bool = true, block: () -> ()) {
     dispatch_after(time, dispatch_get_main_queue(), block)
 }
 
-class ViewController: ReadMoreTableViewController {
+class ViewController: LoadMoreTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class ViewController: ReadMoreTableViewController {
 
         tableView.registerNib(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
 
-        ReadMoreTableViewController.retryText = "Custom Retry Text"
+        LoadMoreTableViewController.retryText = "Custom Retry Text"
         fetchSourceObjects = { [weak self] completion in
             let newNumbers = Array(1...5).map { $0 + (self?.sourceObjects.count ?? 0) }
 

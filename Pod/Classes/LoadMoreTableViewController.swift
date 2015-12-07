@@ -1,6 +1,6 @@
 import UIKit
 
-public class ReadMoreTableViewController: UITableViewController {
+public class LoadMoreTableViewController: UITableViewController {
 
     private enum SectionType {
         case Top
@@ -94,10 +94,10 @@ public class ReadMoreTableViewController: UITableViewController {
                 self?.showsRetryButton = false
                 cell.showsRetryButton = false
             }
-            if let retryText = ReadMoreTableViewController.retryText {
+            if let retryText = LoadMoreTableViewController.retryText {
                 cell.retryButton.setTitle(retryText, forState: .Normal)
             }
-            if let retryImage = ReadMoreTableViewController.retryImage {
+            if let retryImage = LoadMoreTableViewController.retryImage {
                 cell.retryButton.setImage(retryImage, forState: .Normal)
             }
             return cell

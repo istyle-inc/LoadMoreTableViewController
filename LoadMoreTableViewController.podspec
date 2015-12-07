@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "LoadMoreTableViewController"
   s.version          = "0.2.0"
-  s.summary          = "A short description of LoadMoreTableViewController."
+  s.summary          = "It's LoadMoreTableViewController."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -19,11 +19,11 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/LoadMoreTableViewController"
+  s.homepage         = "http://repos.istyle.local/app/LoadMoreTableViewController"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "mishimay" => "mishimay@istyle.co.jp" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/LoadMoreTableViewController.git", :tag => s.version.to_s }
+  s.source           = { :git => "http://repos.istyle.local/app/LoadMoreTableViewController.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
