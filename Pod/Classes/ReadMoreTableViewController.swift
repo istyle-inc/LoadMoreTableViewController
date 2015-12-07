@@ -12,7 +12,7 @@ public class ReadMoreTableViewController: UITableViewController {
     public static var retryImage: UIImage?
 
     private let sectionTypes: [SectionType] = [.Top, .Main, .Footer]
-    private let footerCellIdentifier = "FooterCell"
+    private let footerCellReuseIdentifier = "FooterCell"
 
     private var cellHeights = [NSIndexPath: CGFloat]()
 
@@ -20,7 +20,7 @@ public class ReadMoreTableViewController: UITableViewController {
     private var showsRetryButton = false
     private var isRequesting = false
 
-    public var cellIdentifier = "Cell"
+    public var cellReuseIdentifier = "Cell"
     public var sourceObjects = [AnyObject]()
     public var topCells = [UITableViewCell]() {
         didSet {
@@ -40,7 +40,7 @@ public class ReadMoreTableViewController: UITableViewController {
 
         tableView.tableFooterView = UIView() // cf. http://stackoverflow.com/questions/1369831/eliminate-extra-separators-below-uitableview-in-iphone-sdk
 
-        tableView.registerNib(UINib(nibName: "FooterCell", bundle: NSBundle(forClass: FooterCell.self)), forCellReuseIdentifier: footerCellIdentifier)
+        tableView.registerNib(UINib(nibName: "FooterCell", bundle: NSBundle(forClass: FooterCell.self)), forCellReuseIdentifier: footerCellReuseIdentifier)
 
         tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -78,7 +78,7 @@ public class ReadMoreTableViewController: UITableViewController {
             return topCells[indexPath.row]
 
         case .Main:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
             if indexPath.row < sourceObjects.count {
                 return configureCell(cell: cell, row: indexPath.row)
             } else {
@@ -86,7 +86,7 @@ public class ReadMoreTableViewController: UITableViewController {
             }
 
         case .Footer:
-            let cell = tableView.dequeueReusableCellWithIdentifier(footerCellIdentifier, forIndexPath: indexPath) as! FooterCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(footerCellReuseIdentifier, forIndexPath: indexPath) as! FooterCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.max, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
             cell.showsRetryButton = showsRetryButton
             cell.retryButtonTapped = { [weak self] in

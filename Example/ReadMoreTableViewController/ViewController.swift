@@ -25,7 +25,7 @@ class ViewController: ReadMoreTableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
 
-        tableView.registerNib(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        tableView.registerNib(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
 
         ReadMoreTableViewController.retryText = "Custom Retry Text"
         fetchSourceObjects = { [weak self] completion in
