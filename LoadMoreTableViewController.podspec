@@ -9,21 +9,21 @@
 Pod::Spec.new do |s|
   s.name             = "LoadMoreTableViewController"
   s.version          = "0.2.0"
-  s.summary          = "It's LoadMoreTableViewController."
+  s.summary          = "Automatic cell loading on UITableViewController."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
 #   * Try to keep it short, snappy and to the point.
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description      = <<-DESC
-                       DESC
+  # s.description      = <<-DESC
+  #                      DESC
 
-  s.homepage         = "http://repos.istyle.local/app/LoadMoreTableViewController"
+  s.homepage         = "https://github.com/istyle-inc/LoadMoreTableViewController"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "mishimay" => "mishimay@istyle.co.jp" }
-  s.source           = { :git => "http://repos.istyle.local/app/LoadMoreTableViewController.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/istyle-inc/LoadMoreTableViewController.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
