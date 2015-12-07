@@ -32,7 +32,11 @@ class ViewController: ReadMoreTableViewController {
             let newNumbers = Array(1...5).map { $0 + (self?.sourceObjects.count ?? 0) }
 
             delay(1) { // Pretend to fetch data
-                self?.refreshControl?.performSelector("endRefreshing", withObject: nil, afterDelay: 0.05) // cf. http://stackoverflow.com/questions/28560068/uirefreshcontrol-endrefreshing-is-not-smooth
+
+                // cf. http://stackoverflow.com/questions/28560068/uirefreshcontrol-endrefreshing-is-not-smooth
+                delay(0.05) {
+                    self?.refreshControl?.endRefreshing()
+                }
 
                 // Test retry button
                 let showRetryButton = newNumbers.filter { $0 % 20 == 0 }.count > 0
@@ -53,7 +57,7 @@ class ViewController: ReadMoreTableViewController {
         }
         didSelectRow = { [weak self] row in
             if let title = self?.sourceObjects[row] as? String {
-                print("selected \(title)")
+                print("did select \(title)")
             }
         }
     }
