@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ReadMoreTableViewController.xcodeproj">
+      location = "self:LoadMoreTableViewController.xcodeproj">
    </FileRef>
 </Workspace>

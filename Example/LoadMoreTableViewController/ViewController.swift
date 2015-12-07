@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ReadMoreTableViewController
+import LoadMoreTableViewController
 
 func delay(delay: NSTimeInterval, mainThread: Bool = true, block: () -> ()) {
     let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
