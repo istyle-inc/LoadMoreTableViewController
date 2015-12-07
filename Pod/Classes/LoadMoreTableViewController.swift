@@ -90,7 +90,7 @@ public class LoadMoreTableViewController: UITableViewController {
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.max, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
             cell.showsRetryButton = showsRetryButton
             cell.retryButtonTapped = { [weak self] in
-                self?.readMore()
+                self?.loadMore()
                 self?.showsRetryButton = false
                 cell.showsRetryButton = false
             }
@@ -110,7 +110,7 @@ public class LoadMoreTableViewController: UITableViewController {
         cellHeights[indexPath] = cell.frame.height
 
         if sectionTypes[indexPath.section] == .Footer && !showsRetryButton {
-            readMore()
+            loadMore()
         }
     }
 
@@ -139,7 +139,7 @@ public class LoadMoreTableViewController: UITableViewController {
             tableView.reloadData()
             updateFooter(true)
         } else {
-            readMore(reload: true)
+            loadMore(reload: true)
         }
     }
 
@@ -151,7 +151,7 @@ public class LoadMoreTableViewController: UITableViewController {
 
     // MARK: - Private
 
-    private func readMore(reload reload: Bool = false) {
+    private func loadMore(reload reload: Bool = false) {
         guard !isRequesting else {
             return
         }

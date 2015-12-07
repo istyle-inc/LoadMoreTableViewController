@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ReadMoreTableViewController
+//  LoadMoreTableViewController
 //
 //  Created by mishimay on 10/22/2015.
 //  Copyright (c) 2015 mishimay. All rights reserved.
