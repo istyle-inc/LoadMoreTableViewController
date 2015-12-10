@@ -3,7 +3,7 @@
 //  LoadMoreTableViewController
 //
 //  Created by mishimay on 10/22/2015.
-//  Copyright (c) 2015 mishimay. All rights reserved.
+//  Copyright (c) 2015 istyle Inc. All rights reserved.
 //
 
 import UIKit

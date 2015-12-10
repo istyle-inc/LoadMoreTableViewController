@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LoadMoreTableViewController: 36b060e29bb09e5c38d6e2e8dee4e0189afc7580
+  LoadMoreTableViewController: e3d5b3e2406d8c82de752030a25121d9c4e6e75f
 
 COCOAPODS: 0.39.0
