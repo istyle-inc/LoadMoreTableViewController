@@ -2,13 +2,15 @@
 
 LoadMoreTableViewController is a TableViewController that helps you to show some data like fetched from a web API  successively.
 
+<img src="screen.gif" width="354" height="550">
+
 ## Basic Usage
 
 ### Prepare a Cell
 
 You needs prepare a cell that displayed on a LoadMoreTableViewController.
 
-- xib file way
+- Xib file way
 
     1. Create a xib file then put a Table View Cell on it.
     1. Register the cell to the table of the LoadMoreTableViewController with using UITableView method `- registerNib:forCellReuseIdentifier:`.
@@ -91,7 +93,7 @@ Use function `public func refreshData(immediately immediately: Bool)`.
 - `public static var retryText: String?`
     - Changes retry button text.
 
-- `public static var retryImage: UIImage?``
+- `public static var retryImage: UIImage?`
     - Changes retry button image.
 
 - `public var didSelectRow: (Int -> ())?`
