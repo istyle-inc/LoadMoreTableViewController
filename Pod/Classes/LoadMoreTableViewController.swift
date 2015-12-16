@@ -3,7 +3,6 @@ import UIKit
 public class LoadMoreTableViewController: UITableViewController {
 
     private enum SectionType {
-        case Top
         case Main
         case Footer
     }
@@ -11,7 +10,7 @@ public class LoadMoreTableViewController: UITableViewController {
     public static var retryText: String?
     public static var retryImage: UIImage?
 
-    private let sectionTypes: [SectionType] = [.Top, .Main, .Footer]
+    private let sectionTypes: [SectionType] = [.Main, .Footer]
     private let footerCellReuseIdentifier = "FooterCell"
 
     private var cellHeights = [NSIndexPath: CGFloat]()
@@ -22,11 +21,6 @@ public class LoadMoreTableViewController: UITableViewController {
 
     public var cellReuseIdentifier = "Cell"
     public var sourceObjects = [AnyObject]()
-    public var topCells = [UITableViewCell]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
 
     public var fetchSourceObjects: (completion: (sourceObjects: [AnyObject], hasNext: Bool) -> ()) -> () = { _ in }
     public var configureCell: (cell: UITableViewCell, row: Int) -> UITableViewCell = { _ in return UITableViewCell() }
@@ -62,8 +56,6 @@ public class LoadMoreTableViewController: UITableViewController {
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = sectionTypes[section]
         switch sectionType {
-        case .Top:
-            return topCells.count
         case .Main:
             return sourceObjects.count
         case .Footer:
@@ -74,9 +66,6 @@ public class LoadMoreTableViewController: UITableViewController {
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let sectionType = sectionTypes[indexPath.section]
         switch sectionType {
-        case .Top:
-            return topCells[indexPath.row]
-
         case .Main:
             let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
             if indexPath.row < sourceObjects.count {
