@@ -1,99 +1,103 @@
 # LoadMoreTableViewController
 
-[![CI Status](http://img.shields.io/travis/mishimay/LoadMoreTableViewController.svg?style=flat)](https://travis-ci.org/mishimay/LoadMoreTableViewController)
-[![Version](https://img.shields.io/cocoapods/v/LoadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/LoadMoreTableViewController)
-[![License](https://img.shields.io/cocoapods/l/LoadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/LoadMoreTableViewController)
-[![Platform](https://img.shields.io/cocoapods/p/LoadMoreTableViewController.svg?style=flat)](http://cocoapods.org/pods/LoadMoreTableViewController)
+LoadMoreTableViewController is a TableViewController that helps you to show some data like fetched from a web API  successively.
 
-## Usage
+## Basic Usage
 
-### データの表示
+### Prepare a Cell
 
-LoadMoreTableViewControllerを利用するには以下の設定を行う必要がある。
+You needs prepare a cell that displayed on a LoadMoreTableViewController.
 
-#### Cellの用意
+- xib file way
 
-追加読み込みするCellを `registerNib()` したり、Storyboard上に用意する。
-その際、プロパティ `public var cellReuseIdentifier` にCellのIdentifierを合わせる必要がある。
-CellはAutoLayoutを使用すれば自動でCellの高さが可変する。
+    1. Create a xib file then put a Table View Cell on it.
+    1. Register the cell to the table of the LoadMoreTableViewController with using UITableView method `- registerNib:forCellReuseIdentifier:`.
+        - The cellReuseIdentifier should be the same as the LoadMoreTableViewController property `public var cellReuseIdentifier`.
 
-#### クロージャの設定
+- Storyboard way
+
+    1. On a Storyboard, add a Table View Cell to a Table View Controller that inherits LoadMoreTableViewController.
+    1. Set the Identifier of the Table View cell as it is the same as the LoadMoreTableViewController property `public var cellReuseIdentifier`.
+
+The cell's identifier should be the same as the LoadMoreTableViewController property `public var cellReuseIdentifier` on the both ways.
+The default value is `"Cell"` and it is configureable.
+
+The cell should be designed with using Auto Layout.
+The LoadMoreTableViewController is using Automatic Dimension feature of UITableView so it will adjust the cell height.
+
+### Set Closures
 
 - `public var fetchSourceObjects: (completion: (sourceObjects: [AnyObject], hasNext: Bool) -> ()) -> ()`
-    - このクロージャ内で新しいデータをフェッチする。
-    - completionクロージャを呼び出すことで以下の情報を返す。
-        - 新たに取得したデータ(`sourceObjects`)。
-        - 次の読み込みがあるかどうか(`hasNext`)。
-    - e.g.
-
-```swift
-    loadMoreTableViewController.fetchSourceObjects = { [weak self] completion in
-        Follow.fetchFollow(currentCount, result: { result in
-            switch result {
-            case .Success(let users):
-                completion(sourceObjects: users, hasNext: true)
-            case .Failure(_):
-                loadMoreTableViewController.showRetryButton()
-            }
-        })
-    }
-```
+    - Fetch the new data in this closure.
+    - Call `completion` closure to return these information.
+        - The fetched new objects (`sourceObjects`).
+        - If the next loading exists (`hasNext`).
 
 - `public var configureCell: (cell: UITableViewCell, row: Int) -> UITableViewCell`
-    - cellの設定をする。
-    - e.g.
+    - Configure the cell and return it in this closure.
+    - The cell type is the same as you prepared.
+
+### Example
 
 ```swift
-    loadMoreTableViewController.configureCell = { [weak self] cell, row in
-        if let cell = cell as? FollowCell {
-            let user = loadMoreTableViewController.sourceObjects[row] as? User
-            cell.title.text = user?.name
+import LoadMoreTableViewController
+
+class MyTableViewController: LoadMoreTableViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.registerNib(UINib(nibName: "StandardCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+
+        fetchSourceObjects = { [weak self] completion in
+            self?.request(offset: sourceObjects.count) { products in
+                completion(sourceObjects: products, hasNext: true)
+            }
         }
-        return cell
+        configureCell = { [weak self] cell, row in
+            cell.textLabel?.text = (self?.sourceObjects[row] as? Product)?.title
+            return cell
+        }
     }
+
+}
 ```
 
-- `public var topCells: UITableViewCell` (オプション)
-    - TableViewの上部に、追加読み込みするcellとは別のcellを表示する。
-    - e.g.
+See also the example project.
 
-```swift
-    loadMoreTableViewController.topCells = [HeaderCell.instantiate()]
-```
+## Additional Usage
 
-### データを最初から再読み込みする
+### Data Source
 
-- `public func refreshData(immediately immediately: Bool)`
-    - immediately: true
-        - tableViewを空にし、Activity Indicator をトップに配置してデータ取得処理を走らせる。
-    - immediately: false
-        - 1件目からのデータを取得した後にtableViewを更新する。
-        - `UIRefreshControl` を使う際に、LoadMoreTableViewControllerの Activity Indicator を表示させないために用意。
+The fetched data are stored to the array `public var sourceObjects: [AnyObject]`.
+You can directly access or manipulate this array.
 
-### データ管理
+### Refreshing Data
 
-取得したデータは `public var sourceObjects = [AnyObject]()` の配列に入る。
+Use function `public func refreshData(immediately immediately: Bool)`.
+- immediately: true
+    - Immediately makes the tableView empty and starts fetching the data from the first.
+    - The loading activity indicator shows on the top.
+- immediately: false
+    - Refreshes the tableView after fetching the data from the first.
+    - This prevents the loading activity indicator is displayed on the top when UIRefreshControl is used.
 
-### その他設定
+### Other Settings
 
 - `public func showRetryButton()`
-    - Activity Indicator をリトライボタンに変える。
+    - Changes the loading activity indicator to retry button.
+    - When retry button is tapped, next loading starts.
 
 - `public static var retryText: String?`
-    - リトライボタンの文言を指定。
+    - Changes retry button text.
 
 - `public static var retryImage: UIImage?``
-    - リトライボタンの画像を指定。
+    - Changes retry button image.
 
 - `public var didSelectRow: (Int -> ())?`
-    - cellが選択されたときの処理を記述。
-
-## Requirements
+    - Notifies what row is selected.
 
 ## Installation
-
-LoadMoreTableViewController is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
 
 ```ruby
 pod "LoadMoreTableViewController"
