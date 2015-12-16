@@ -33,11 +33,6 @@ class ViewController: LoadMoreTableViewController {
 
             delay(1) { // Pretend to fetch data
 
-                // cf. http://stackoverflow.com/questions/28560068/uirefreshcontrol-endrefreshing-is-not-smooth
-                delay(0.05) {
-                    self?.refreshControl?.endRefreshing()
-                }
-
                 // Test retry button
                 let showRetryButton = newNumbers.filter { $0 % 20 == 0 }.count > 0
                 if showRetryButton {
@@ -46,8 +41,14 @@ class ViewController: LoadMoreTableViewController {
                     }
                 }
 
-                let newTitles = newNumbers.map { "sample\($0)" }
-                completion(sourceObjects: newTitles, hasNext: true)
+                let refreshing = self?.refreshControl?.refreshing == true
+                if refreshing {
+                    self?.refreshControl?.endRefreshing()
+                }
+
+                delay(refreshing ? 0.3 : 0) {
+                    completion(sourceObjects: newNumbers.map { "sample\($0)" }, hasNext: true)
+                }
             }
         }
         configureCell = { [weak self] cell, row in
