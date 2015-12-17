@@ -19,6 +19,16 @@ public class LoadMoreTableViewController: UITableViewController {
     private var showsRetryButton = false
     private var isRequesting = false
 
+    private var isScrolling = false {
+        didSet {
+            if !isScrolling && pendingProcess != nil {
+                pendingProcess?()
+                pendingProcess = nil
+            }
+        }
+    }
+    private var pendingProcess: (() -> ())?
+
     public var cellReuseIdentifier = "Cell"
     public var sourceObjects = [AnyObject]()
 
@@ -115,6 +125,22 @@ public class LoadMoreTableViewController: UITableViewController {
         didSelectRow?(indexPath.row)
     }
 
+    // MARK: - ScrollViewDelegate
+
+    public override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        isScrolling = true
+    }
+
+    public override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            isScrolling = false
+        }
+    }
+
+    public override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        isScrolling = false
+    }
+
     // MARK: - Public
 
     /// - Parameters:
@@ -150,44 +176,20 @@ public class LoadMoreTableViewController: UITableViewController {
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             self.fetchSourceObjects() { [weak self] sourceObjects, hasNext in
-                guard let weakSelf = self else {
-                    return
-                }
 
                 // Prevent data mismatch when cleared existing data while fetching new data
                 if oldDataCount == self?.sourceObjects.count {
                     self?.sourceObjects += sourceObjects
                 }
 
-                dispatch_async(dispatch_get_main_queue()) {
-                    UIView.setAnimationsEnabled(false)
-                    if let mainSection = weakSelf.sectionTypes.indexOf(.Main) {
-                        let newDataCount = weakSelf.sourceObjects.count
-                        let currentDataCount = weakSelf.tableView.numberOfRowsInSection(mainSection)
-                        if currentDataCount < newDataCount {
-                            self?.tableView.insertRowsAtIndexPaths(
-                                Array(currentDataCount..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
-                                withRowAnimation: .None)
-                        } else {
-                            self?.tableView.deleteRowsAtIndexPaths(
-                                Array(newDataCount..<currentDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
-                                withRowAnimation: .None)
-                        }
-
-                        if reload {
-                            self?.tableView.reloadRowsAtIndexPaths(
-                                Array(0..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
-                                withRowAnimation: .None)
+                if self?.isScrolling == true {
+                    if self?.pendingProcess == nil {
+                        self?.pendingProcess = {
+                            self?.updateTable(reload: reload, hasNext: hasNext)
                         }
                     }
-                    UIView.setAnimationsEnabled(true)
-
-                    if !hasNext {
-                        self?.updateFooter(false)
-                    } else {
-                        // To call willDisplayCell delegate to read cells
-                        self?.updateFooter(true)
-                    }
+                } else {
+                    self?.updateTable(reload: reload, hasNext: hasNext)
                 }
 
                 self?.isRequesting = false
@@ -195,7 +197,44 @@ public class LoadMoreTableViewController: UITableViewController {
         }
     }
 
+    private func updateTable(reload reload: Bool, hasNext: Bool) {
+        dispatch_async(dispatch_get_main_queue()) {
+            UIView.setAnimationsEnabled(false)
+            if let mainSection = self.sectionTypes.indexOf(.Main) {
+                let newDataCount = self.sourceObjects.count
+                let currentDataCount = self.tableView.numberOfRowsInSection(mainSection)
+                if currentDataCount < newDataCount {
+                    self.tableView.insertRowsAtIndexPaths(
+                        Array(currentDataCount..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
+                        withRowAnimation: .None)
+                } else {
+                    self.tableView.deleteRowsAtIndexPaths(
+                        Array(newDataCount..<currentDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
+                        withRowAnimation: .None)
+                }
+
+                if reload {
+                    self.tableView.reloadRowsAtIndexPaths(
+                        Array(0..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
+                        withRowAnimation: .None)
+                }
+            }
+            UIView.setAnimationsEnabled(true)
+
+            if !hasNext {
+                self.updateFooter(false)
+            } else {
+                // To call willDisplayCell delegate to read cells
+                self.updateFooter(true)
+            }
+        }
+    }
+
     private func updateFooter(show: Bool) {
+        guard pendingProcess == nil else {
+            return
+        }
+
         guard let footerSection = sectionTypes.indexOf(.Footer) else {
             return
         }
