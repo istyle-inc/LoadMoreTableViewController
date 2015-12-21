@@ -8,7 +8,7 @@ LoadMoreTableViewController is a TableViewController that helps you to show some
 
 ### Prepare a Cell
 
-You needs prepare a cell that displayed on a LoadMoreTableViewController.
+You need to prepare a cell that is displayed on a LoadMoreTableViewController.
 
 - Xib file way
 
