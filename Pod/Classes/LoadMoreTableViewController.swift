@@ -250,9 +250,7 @@ public class LoadMoreTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
 
         } else if show && !hidesFooter {
-            UIView.setAnimationsEnabled(false)
-            tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
-            UIView.setAnimationsEnabled(true)
+            tableView.reloadData()
         }
     }
 
