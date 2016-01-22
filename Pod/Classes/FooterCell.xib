@@ -7,19 +7,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="mQR-KM-Ign" customClass="FooterCell" customModule="ReadMoreTableViewController" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="55" id="mQR-KM-Ign" customClass="FooterCell" customModule="LoadMoreTableViewController" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mQR-KM-Ign" id="mpI-ob-KLD">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7j-DN-NHO">
-                        <rect key="frame" x="0.0" y="0.5" width="320" height="43.5"/>
+                        <rect key="frame" x="0.0" y="0.5" width="320" height="54"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="43.5" id="TCS-Rd-pvr"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <state key="normal" title="Retry"/>
                         <connections>
@@ -27,18 +24,19 @@
                         </connections>
                     </button>
                     <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GGh-dH-wzH">
-                        <rect key="frame" x="150" y="12" width="20" height="20"/>
+                        <rect key="frame" x="150" y="15" width="20" height="24.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="P7j-DN-NHO" firstAttribute="top" secondItem="mpI-ob-KLD" secondAttribute="top" id="EeA-Do-02H"/>
+                    <constraint firstItem="GGh-dH-wzH" firstAttribute="top" secondItem="mpI-ob-KLD" secondAttribute="top" constant="15" id="XCZ-Wd-zVm"/>
                     <constraint firstItem="P7j-DN-NHO" firstAttribute="leading" secondItem="mpI-ob-KLD" secondAttribute="leading" id="axo-Ug-VvU"/>
-                    <constraint firstItem="GGh-dH-wzH" firstAttribute="centerY" secondItem="mpI-ob-KLD" secondAttribute="centerY" id="fbf-Nk-Z6F"/>
                     <constraint firstAttribute="bottom" secondItem="P7j-DN-NHO" secondAttribute="bottom" id="iC0-yA-e8W"/>
                     <constraint firstItem="GGh-dH-wzH" firstAttribute="centerX" secondItem="mpI-ob-KLD" secondAttribute="centerX" id="ob8-9g-1Q6"/>
                     <constraint firstAttribute="trailing" secondItem="P7j-DN-NHO" secondAttribute="trailing" id="tIt-ff-fve"/>
+                    <constraint firstAttribute="bottom" secondItem="GGh-dH-wzH" secondAttribute="bottom" constant="15" id="vRj-Ml-Ky0"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,7 +44,7 @@
                 <outlet property="activityIndecator" destination="GGh-dH-wzH" id="L64-dM-eqB"/>
                 <outlet property="retryButton" destination="P7j-DN-NHO" id="G2J-qD-JqQ"/>
             </connections>
-            <point key="canvasLocation" x="146" y="89"/>
+            <point key="canvasLocation" x="146" y="94.5"/>
         </tableViewCell>
     </objects>
 </document>
