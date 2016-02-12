@@ -45,8 +45,6 @@ public class LoadMoreTableViewController: UITableViewController {
         tableView.tableFooterView = UIView() // cf. http://stackoverflow.com/questions/1369831/eliminate-extra-separators-below-uitableview-in-iphone-sdk
 
         tableView.registerNib(UINib(nibName: "FooterCell", bundle: NSBundle(forClass: FooterCell.self)), forCellReuseIdentifier: footerCellReuseIdentifier)
-
-        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     public override func viewWillAppear(animated: Bool) {
@@ -111,6 +109,11 @@ public class LoadMoreTableViewController: UITableViewController {
         if sectionTypes[indexPath.section] == .Footer && !showsRetryButton {
             loadMore()
         }
+    }
+
+    // cf. http://stackoverflow.com/questions/26917728/ios-uitableviewautomaticdimension-rowheight-poor-performance-jumping
+    public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 
     public override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
