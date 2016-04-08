@@ -153,11 +153,14 @@ public class LoadMoreTableViewController: UITableViewController {
     public func refreshData(immediately immediately: Bool) {
         sourceObjects.removeAll()
         showsRetryButton = false
-        if immediately {
-            tableView.reloadData()
-            updateFooter(true)
-        } else {
-            loadMore(reload: true)
+
+        dispatch_async(dispatch_get_main_queue()) {
+            if immediately {
+                self.tableView.reloadData()
+                self.updateFooter(true)
+            } else {
+                self.loadMore(reload: true)
+            }
         }
     }
 
@@ -242,18 +245,20 @@ public class LoadMoreTableViewController: UITableViewController {
             return
         }
 
-        if show && hidesFooter {
-            UIView.setAnimationsEnabled(false)
-            hidesFooter = false
-            tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
-            UIView.setAnimationsEnabled(true)
+        dispatch_async(dispatch_get_main_queue()) {
+            if show && self.hidesFooter {
+                UIView.setAnimationsEnabled(false)
+                self.hidesFooter = false
+                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
+                UIView.setAnimationsEnabled(true)
 
-        } else if !show && !hidesFooter {
-            hidesFooter = true
-            tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
+            } else if !show && !self.hidesFooter {
+                self.hidesFooter = true
+                self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
 
-        } else if show && !hidesFooter {
-            tableView.reloadData()
+            } else if show && !self.hidesFooter {
+                self.tableView.reloadData()
+            }
         }
     }
 

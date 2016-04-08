@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "LoadMoreTableViewController"
-  s.version          = "0.2.5"
+  s.version          = "0.2.6"
   s.summary          = "Automatic cell loading on UITableViewController."
 
 # This description is used to generate tags and improve search results.
