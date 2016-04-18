@@ -247,14 +247,12 @@ public class LoadMoreTableViewController: UITableViewController {
 
         dispatch_async(dispatch_get_main_queue()) {
             if show && self.hidesFooter {
-                UIView.setAnimationsEnabled(false)
                 self.hidesFooter = false
-                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
-                UIView.setAnimationsEnabled(true)
+                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .None)
 
             } else if !show && !self.hidesFooter {
                 self.hidesFooter = true
-                self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .Fade)
+                self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .None)
 
             } else if show && !self.hidesFooter {
                 self.tableView.reloadData()
