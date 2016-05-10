@@ -117,7 +117,9 @@ public class LoadMoreTableViewController: UITableViewController {
     }
 
     public override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let cachedHeight = cellHeights[indexPath] {
+
+        // cf. http://stackoverflow.com/questions/19355182/sdnestedtable-expand-does-not-work-on-ios-7
+        if let cachedHeight = cellHeights[NSIndexPath(forRow: indexPath.row, inSection: indexPath.section)] {
             return cachedHeight
         } else {
             return 50
