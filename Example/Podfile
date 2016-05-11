@@ -1,10 +1,10 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'LoadMoreTableViewController_Example', :exclusive => true do
+target 'LoadMoreTableViewController_Example' do
   pod "LoadMoreTableViewController", :path => "../"
 end
 
-target 'LoadMoreTableViewController_Tests', :exclusive => true do
+target 'LoadMoreTableViewController_Tests' do
   pod "LoadMoreTableViewController", :path => "../"
 end
