@@ -19,11 +19,11 @@ class ViewController: LoadMoreTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: "clear")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .Plain, target: self, action: "refresh")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: #selector(clear))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .Plain, target: self, action: #selector(refresh))
 
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: "refresh", forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: .ValueChanged)
 
         tableView.registerNib(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
 
