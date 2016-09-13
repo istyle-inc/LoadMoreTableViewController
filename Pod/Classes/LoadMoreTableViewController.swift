@@ -156,6 +156,11 @@ open class LoadMoreTableViewController: UITableViewController {
         sourceObjects.removeAll()
         showsRetryButton = false
 
+        // To refresh the table view when it is scrolling
+        if immediately {
+            isScrolling = false
+        }
+
         DispatchQueue.main.async {
             if immediately {
                 self.tableView.reloadData()
