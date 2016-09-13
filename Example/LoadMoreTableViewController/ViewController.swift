@@ -9,9 +9,10 @@
 import UIKit
 import LoadMoreTableViewController
 
-func delay(delay: NSTimeInterval, mainThread: Bool = true, block: () -> ()) {
-    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-    dispatch_after(time, dispatch_get_main_queue(), block)
+func delay(_ delay: TimeInterval, block: @escaping () -> ()) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+        block()
+    }
 }
 
 class ViewController: LoadMoreTableViewController {
@@ -19,13 +20,13 @@ class ViewController: LoadMoreTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: #selector(clear))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .Plain, target: self, action: #selector(refresh))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clear))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Refresh", style: .plain, target: self, action: #selector(refresh))
 
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refresh), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
-        tableView.registerNib(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.register(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
 
         LoadMoreTableViewController.retryText = "Custom Retry Text"
         fetchSourceObjects = { [weak self] completion in
@@ -41,13 +42,13 @@ class ViewController: LoadMoreTableViewController {
                     }
                 }
 
-                let refreshing = self?.refreshControl?.refreshing == true
+                let refreshing = self?.refreshControl?.isRefreshing == true
                 if refreshing {
                     self?.refreshControl?.endRefreshing()
                 }
 
                 delay(refreshing ? 0.3 : 0) {
-                    completion(sourceObjects: newNumbers.map { "sample\($0)" }, hasNext: true)
+                    completion(newNumbers.map { "sample \($0)" }, true)
                 }
             }
         }

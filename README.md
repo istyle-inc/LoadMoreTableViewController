@@ -13,7 +13,7 @@ You need to prepare a cell that is displayed on a LoadMoreTableViewController.
 - Xib file way
 
     1. Create a xib file then put a Table View Cell on it.
-    1. Register the cell to the table of the LoadMoreTableViewController with using UITableView method `- registerNib:forCellReuseIdentifier:`.
+    1. Register the cell to the table of the LoadMoreTableViewController with using UITableView method `register(_:forCellReuseIdentifier:)`.
         - The cellReuseIdentifier should be the same as the LoadMoreTableViewController property `public var cellReuseIdentifier`.
 
 - Storyboard way
@@ -29,13 +29,13 @@ The LoadMoreTableViewController is using Automatic Dimension feature of UITableV
 
 ### Set Closures
 
-- `public var fetchSourceObjects: (completion: (sourceObjects: [AnyObject], hasNext: Bool) -> ()) -> ()`
+- `public var fetchSourceObjects: (_ completion: @escaping (_ sourceObjects: [Any], _ hasNext: Bool) -> ()) -> ()`
     - Fetch the new data in this closure.
     - Call `completion` closure to return these information.
         - The fetched new objects (`sourceObjects`).
         - If the next loading exists (`hasNext`).
 
-- `public var configureCell: (cell: UITableViewCell, row: Int) -> UITableViewCell`
+- `public var configureCell: (_ cell: UITableViewCell, _ row: Int) -> UITableViewCell`
     - Configure the cell and return it in this closure.
     - The cell type is the same as you prepared.
 
@@ -53,7 +53,7 @@ class MyTableViewController: LoadMoreTableViewController {
 
         fetchSourceObjects = { [weak self] completion in
             self?.request(offset: sourceObjects.count) { products in
-                completion(sourceObjects: products, hasNext: true)
+                completion(products, true)
             }
         }
         configureCell = { [weak self] cell, row in
@@ -71,7 +71,7 @@ See also the example project.
 
 ### Data Source
 
-The fetched data are stored to the array `public var sourceObjects: [AnyObject]`.
+The fetched data are stored to the array `public var sourceObjects: [Any]`.
 You can directly access or manipulate this array.
 
 ### Refreshing Data
@@ -96,8 +96,12 @@ Use function `public func refreshData(immediately immediately: Bool)`.
 - `public static var retryImage: UIImage?`
     - Changes retry button image.
 
-- `public var didSelectRow: (Int -> ())?`
+- `public var didSelectRow: ((Int) -> ())?`
     - Notifies what row is selected.
+
+## Requirements
+
+Swift 3.0
 
 ## Installation
 

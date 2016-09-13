@@ -8,11 +8,11 @@ public class FooterCell: UITableViewCell {
     var showsRetryButton = false {
         didSet {
             if showsRetryButton {
-                activityIndecator.hidden = true
-                retryButton.hidden = false
+                activityIndecator.isHidden = true
+                retryButton.isHidden = false
             } else {
-                activityIndecator.hidden = false
-                retryButton.hidden = true
+                activityIndecator.isHidden = false
+                retryButton.isHidden = true
             }
         }
     }
@@ -30,7 +30,7 @@ public class FooterCell: UITableViewCell {
         activityIndecator.startAnimating()
     }
 
-    @IBAction func retryButtonTapped(sender: UIButton) {
+    @IBAction func retryButtonTapped(_ sender: UIButton) {
         retryButtonTapped?()
     }
 

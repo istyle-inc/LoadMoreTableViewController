@@ -1,19 +1,19 @@
 import UIKit
 
-public class LoadMoreTableViewController: UITableViewController {
+open class LoadMoreTableViewController: UITableViewController {
 
     private enum SectionType {
-        case Main
-        case Footer
+        case main
+        case footer
     }
 
     public static var retryText: String?
     public static var retryImage: UIImage?
 
-    private let sectionTypes: [SectionType] = [.Main, .Footer]
+    private let sectionTypes: [SectionType] = [.main, .footer]
     private let footerCellReuseIdentifier = "FooterCell"
 
-    private var cellHeights = [NSIndexPath: CGFloat]()
+    private var cellHeights = [IndexPath: CGFloat]()
 
     private var hidesFooter = false
     private var showsRetryButton = false
@@ -30,61 +30,61 @@ public class LoadMoreTableViewController: UITableViewController {
     private var pendingProcess: (() -> ())?
 
     public var cellReuseIdentifier = "Cell"
-    public var sourceObjects = [AnyObject]()
+    public var sourceObjects = [Any]()
 
-    public var fetchSourceObjects: (completion: (sourceObjects: [AnyObject], hasNext: Bool) -> ()) -> () = { _ in }
-    public var configureCell: (cell: UITableViewCell, row: Int) -> UITableViewCell = { _ in return UITableViewCell() }
+    public var fetchSourceObjects: (_ completion: @escaping (_ sourceObjects: [Any], _ hasNext: Bool) -> ()) -> () = { _ in }
+    public var configureCell: (_ cell: UITableViewCell, _ row: Int) -> UITableViewCell = { _ in return UITableViewCell() }
 
-    public var didSelectRow: (Int -> ())?
+    public var didSelectRow: ((Int) -> ())?
 
     // MARK: - Lifecycle
 
-    override public func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView() // cf. http://stackoverflow.com/questions/1369831/eliminate-extra-separators-below-uitableview-in-iphone-sdk
 
-        tableView.registerNib(UINib(nibName: "FooterCell", bundle: NSBundle(forClass: FooterCell.self)), forCellReuseIdentifier: footerCellReuseIdentifier)
+        tableView.register(UINib(nibName: "FooterCell", bundle: Bundle(for: FooterCell.self)), forCellReuseIdentifier: footerCellReuseIdentifier)
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRowAtIndexPath(indexPath, animated: animated)
+            tableView.deselectRow(at: indexPath, animated: animated)
         }
     }
 
     // MARK: - TableViewDataSource
 
-    public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open override func numberOfSections(in tableView: UITableView) -> Int {
         return sectionTypes.count
     }
 
-    public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = sectionTypes[section]
         switch sectionType {
-        case .Main:
+        case .main:
             return sourceObjects.count
-        case .Footer:
+        case .footer:
             return (hidesFooter ? 0 : 1)
         }
     }
 
-    public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionType = sectionTypes[indexPath.section]
         switch sectionType {
-        case .Main:
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath)
+        case .main:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath as IndexPath)
             if indexPath.row < sourceObjects.count {
-                return configureCell(cell: cell, row: indexPath.row)
+                return configureCell(cell, indexPath.row)
             } else {
                 return cell
             }
 
-        case .Footer:
-            let cell = tableView.dequeueReusableCellWithIdentifier(footerCellReuseIdentifier, forIndexPath: indexPath) as! FooterCell
-            cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.max, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
+        case .footer:
+            let cell = tableView.dequeueReusableCell(withIdentifier: footerCellReuseIdentifier, for: indexPath as IndexPath) as! FooterCell
+            cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
             cell.showsRetryButton = showsRetryButton
             cell.retryButtonTapped = { [weak self] in
                 self?.loadMore()
@@ -92,10 +92,10 @@ public class LoadMoreTableViewController: UITableViewController {
                 cell.showsRetryButton = false
             }
             if let retryText = LoadMoreTableViewController.retryText {
-                cell.retryButton.setTitle(retryText, forState: .Normal)
+                cell.retryButton.setTitle(retryText, for: .normal)
             }
             if let retryImage = LoadMoreTableViewController.retryImage {
-                cell.retryButton.setImage(retryImage, forState: .Normal)
+                cell.retryButton.setImage(retryImage, for: .normal)
             }
             return cell
         }
@@ -103,46 +103,46 @@ public class LoadMoreTableViewController: UITableViewController {
 
     // MARK: - TableViewDelegate
 
-    public override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    open override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cellHeights[indexPath] = cell.frame.height
 
-        if sectionTypes[indexPath.section] == .Footer && !showsRetryButton {
+        if sectionTypes[indexPath.section] == .footer && !showsRetryButton {
             loadMore()
         }
     }
 
     // cf. http://stackoverflow.com/questions/26917728/ios-uitableviewautomaticdimension-rowheight-poor-performance-jumping
-    public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 
-    public override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 
         // cf. http://stackoverflow.com/questions/19355182/sdnestedtable-expand-does-not-work-on-ios-7
-        if let cachedHeight = cellHeights[NSIndexPath(forRow: indexPath.row, inSection: indexPath.section)] {
+        if let cachedHeight = cellHeights[IndexPath(row: indexPath.row, section: indexPath.section)] {
             return cachedHeight
         } else {
             return 50
         }
     }
 
-    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectRow?(indexPath.row)
     }
 
     // MARK: - ScrollViewDelegate
 
-    public override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    open override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         isScrolling = true
     }
 
-    public override func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    open override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
             isScrolling = false
         }
     }
 
-    public override func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    open override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         isScrolling = false
     }
 
@@ -156,10 +156,10 @@ public class LoadMoreTableViewController: UITableViewController {
         sourceObjects.removeAll()
         showsRetryButton = false
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             if immediately {
                 self.tableView.reloadData()
-                self.updateFooter(true)
+                self.updateFooter(show: true)
             } else {
                 self.loadMore(reload: true)
             }
@@ -169,7 +169,7 @@ public class LoadMoreTableViewController: UITableViewController {
     public func showRetryButton() {
         isRequesting = false
         showsRetryButton = true
-        updateFooter(true)
+        updateFooter(show: true)
     }
 
     // MARK: - Private
@@ -182,7 +182,7 @@ public class LoadMoreTableViewController: UITableViewController {
 
         let oldDataCount = sourceObjects.count
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global().async {
             self.fetchSourceObjects() { [weak self] sourceObjects, hasNext in
 
                 // Prevent data mismatch when cleared existing data while fetching new data
@@ -206,34 +206,34 @@ public class LoadMoreTableViewController: UITableViewController {
     }
 
     private func updateTable(reload reload: Bool, hasNext: Bool) {
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             UIView.setAnimationsEnabled(false)
-            if let mainSection = self.sectionTypes.indexOf(.Main) {
+            if let mainSection = self.sectionTypes.index(of: .main) {
                 let newDataCount = self.sourceObjects.count
-                let currentDataCount = self.tableView.numberOfRowsInSection(mainSection)
+                let currentDataCount = self.tableView.numberOfRows(inSection: mainSection)
                 if currentDataCount < newDataCount {
-                    self.tableView.insertRowsAtIndexPaths(
-                        Array(currentDataCount..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
-                        withRowAnimation: .None)
+                    self.tableView.insertRows(
+                        at: Array(currentDataCount..<newDataCount).map { IndexPath(row: $0, section: mainSection) },
+                        with: .none)
                 } else {
-                    self.tableView.deleteRowsAtIndexPaths(
-                        Array(newDataCount..<currentDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
-                        withRowAnimation: .None)
+                    self.tableView.deleteRows(
+                        at: Array(newDataCount..<currentDataCount).map { IndexPath(row: $0, section: mainSection) },
+                        with: .none)
                 }
 
                 if reload {
-                    self.tableView.reloadRowsAtIndexPaths(
-                        Array(0..<newDataCount).map { NSIndexPath(forRow: $0, inSection: mainSection) },
-                        withRowAnimation: .None)
+                    self.tableView.reloadRows(
+                        at: Array(0..<newDataCount).map { IndexPath(row: $0, section: mainSection) },
+                        with: .none)
                 }
             }
             UIView.setAnimationsEnabled(true)
 
             if !hasNext {
-                self.updateFooter(false)
+                self.updateFooter(show: false)
             } else {
                 // To call willDisplayCell delegate to read cells
-                self.updateFooter(true)
+                self.updateFooter(show: true)
             }
         }
     }
@@ -243,18 +243,18 @@ public class LoadMoreTableViewController: UITableViewController {
             return
         }
 
-        guard let footerSection = sectionTypes.indexOf(.Footer) else {
+        guard let footerSection = sectionTypes.index(of: .footer) else {
             return
         }
 
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             if show && self.hidesFooter {
                 self.hidesFooter = false
-                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .None)
+                self.tableView.insertRows(at: [IndexPath(row: 0, section: footerSection)], with: .none)
 
             } else if !show && !self.hidesFooter {
                 self.hidesFooter = true
-                self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: footerSection)], withRowAnimation: .None)
+                self.tableView.deleteRows(at: [IndexPath(row: 0, section: footerSection)], with: .none)
 
             } else if show && !self.hidesFooter {
                 self.tableView.reloadData()
