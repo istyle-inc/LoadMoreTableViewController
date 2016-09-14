@@ -152,7 +152,7 @@ open class LoadMoreTableViewController: UITableViewController {
     ///     - immediately:
     ///         - true: It will show an activity indicator on the top then fetch the data.
     ///         - false: It will refresh the table view after fetching the data.
-    public func refreshData(immediately immediately: Bool) {
+    public func refreshData(immediately: Bool) {
         sourceObjects.removeAll()
         showsRetryButton = false
 
@@ -179,7 +179,7 @@ open class LoadMoreTableViewController: UITableViewController {
 
     // MARK: - Private
 
-    private func loadMore(reload reload: Bool = false) {
+    private func loadMore(reload: Bool = false) {
         guard !isRequesting else {
             return
         }
@@ -210,7 +210,7 @@ open class LoadMoreTableViewController: UITableViewController {
         }
     }
 
-    private func updateTable(reload reload: Bool, hasNext: Bool) {
+    private func updateTable(reload: Bool, hasNext: Bool) {
         DispatchQueue.main.async {
             UIView.setAnimationsEnabled(false)
             if let mainSection = self.sectionTypes.index(of: .main) {
