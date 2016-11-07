@@ -30,7 +30,7 @@ open class LoadMoreTableViewController: UITableViewController {
     private var pendingProcess: (() -> ())?
 
     public var cellReuseIdentifier = "Cell"
-    public var sourceObjects = [Any]()
+    open var sourceObjects = [Any]()
 
     public var fetchSourceObjects: (_ completion: @escaping (_ sourceObjects: [Any], _ hasNext: Bool) -> ()) -> () = { _ in }
     public var configureCell: (_ cell: UITableViewCell, _ row: Int) -> UITableViewCell = { _ in return UITableViewCell() }
