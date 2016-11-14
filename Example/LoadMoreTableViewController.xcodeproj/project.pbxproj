@@ -15,6 +15,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		9E6A2C761CE2DF3D00A05D65 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6A2C741CE2DF2400A05D65 /* Tests.swift */; };
+		9ED628651DD984BB00D7CC0B /* AdCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ED628641DD984BB00D7CC0B /* AdCell.xib */; };
 		9EEC499E1C156C3D00EF5E9E /* SampleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EEC499D1C156C3D00EF5E9E /* SampleCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		739AF83EA3D4C8CE56A37447 /* Pods-LoadMoreTableViewController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadMoreTableViewController_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoadMoreTableViewController_Example/Pods-LoadMoreTableViewController_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8B379D67AF5CF8C52156F30C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9E6A2C741CE2DF2400A05D65 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		9ED628641DD984BB00D7CC0B /* AdCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdCell.xib; sourceTree = SOURCE_ROOT; };
 		9EEC499D1C156C3D00EF5E9E /* SampleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SampleCell.xib; sourceTree = "<group>"; };
 		B352AAECF6A62B69FA4C6AAC /* Pods-LoadMoreTableViewController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoadMoreTableViewController_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LoadMoreTableViewController_Tests/Pods-LoadMoreTableViewController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		D49C552D866EE7F45E1B219C /* LoadMoreTableViewController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LoadMoreTableViewController.podspec; path = ../LoadMoreTableViewController.podspec; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				9EEC499D1C156C3D00EF5E9E /* SampleCell.xib */,
+				9ED628641DD984BB00D7CC0B /* AdCell.xib */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				9ED628651DD984BB00D7CC0B /* AdCell.xib in Resources */,
 				9EEC499E1C156C3D00EF5E9E /* SampleCell.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,

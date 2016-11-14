@@ -32,6 +32,7 @@ open class LoadMoreTableViewController: UITableViewController {
     open var cellReuseIdentifier = "Cell"
     open var sourceObjects = [Any]()
 
+    public var fetchCellReuseIdentifier: (_ row: Int) -> String? = { _ in return nil }
     public var fetchSourceObjects: (_ completion: @escaping (_ sourceObjects: [Any], _ hasNext: Bool) -> ()) -> () = { _ in }
     public var configureCell: (_ cell: UITableViewCell, _ row: Int) -> UITableViewCell = { _ in return UITableViewCell() }
 
@@ -75,7 +76,8 @@ open class LoadMoreTableViewController: UITableViewController {
         let sectionType = sectionTypes[indexPath.section]
         switch sectionType {
         case .main:
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+            let identifier = fetchCellReuseIdentifier(indexPath.row) ?? cellReuseIdentifier
+            let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
             if indexPath.row < sourceObjects.count {
                 return configureCell(cell, indexPath.row)
             } else {

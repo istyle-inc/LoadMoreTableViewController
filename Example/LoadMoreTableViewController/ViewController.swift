@@ -17,6 +17,8 @@ func delay(_ delay: TimeInterval, block: @escaping () -> ()) {
 
 class ViewController: LoadMoreTableViewController {
 
+    private var count = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,10 +29,18 @@ class ViewController: LoadMoreTableViewController {
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
         tableView.register(UINib(nibName: "SampleCell", bundle: nil), forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.register(UINib(nibName: "AdCell", bundle: nil), forCellReuseIdentifier: "Ad")
 
         LoadMoreTableViewController.retryText = "Custom Retry Text"
+        fetchCellReuseIdentifier = { [weak self] row in
+            return self?.sourceObjects[row] is NSNull ? "Ad" : nil
+        }
         fetchSourceObjects = { [weak self] completion in
-            let newNumbers = Array(1...5).map { $0 + (self?.sourceObjects.count ?? 0) }
+            var newNumbers = [Int]()
+            for _ in 0..<5 {
+                self?.count += 1
+                newNumbers.append(self?.count ?? 0)
+            }
 
             delay(1) { // Pretend to fetch data
 
@@ -48,13 +58,15 @@ class ViewController: LoadMoreTableViewController {
                 }
 
                 delay(refreshing ? 0.3 : 0) {
-                    completion(newNumbers.map { "sample \($0)" }, true)
+                    completion(newNumbers.map { "sample \($0)" } + [NSNull()], true)
                 }
             }
         }
         configureCell = { [weak self] cell, row in
-            cell.textLabel?.text = self?.sourceObjects[row] as? String
-            cell.detailTextLabel?.text = NSDate().description
+            if cell.reuseIdentifier == self?.cellReuseIdentifier {
+                cell.textLabel?.text = self?.sourceObjects[row] as? String
+                cell.detailTextLabel?.text = NSDate().description
+            }
             return cell
         }
         didSelectRow = { [weak self] row in
@@ -65,10 +77,12 @@ class ViewController: LoadMoreTableViewController {
     }
 
     func clear() {
+        count = 0
         refreshData(immediately: true)
     }
 
     func refresh() {
+        count = 0
         refreshData(immediately: false)
     }
 
