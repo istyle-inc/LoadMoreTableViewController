@@ -29,7 +29,7 @@ open class LoadMoreTableViewController: UITableViewController {
     }
     private var pendingProcess: (() -> ())?
 
-    public var cellReuseIdentifier = "Cell"
+    open var cellReuseIdentifier = "Cell"
     open var sourceObjects = [Any]()
 
     public var fetchSourceObjects: (_ completion: @escaping (_ sourceObjects: [Any], _ hasNext: Bool) -> ()) -> () = { _ in }
@@ -152,7 +152,7 @@ open class LoadMoreTableViewController: UITableViewController {
     ///     - immediately:
     ///         - true: It will show an activity indicator on the top then fetch the data.
     ///         - false: It will refresh the table view after fetching the data.
-    public func refreshData(immediately: Bool) {
+    open func refreshData(immediately: Bool) {
         sourceObjects.removeAll()
         showsRetryButton = false
 
