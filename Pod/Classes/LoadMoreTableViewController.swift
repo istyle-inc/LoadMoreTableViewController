@@ -43,6 +43,7 @@ open class LoadMoreTableViewController: UITableViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.backgroundColor = .lightGray
         tableView.tableFooterView = UIView() // cf. http://stackoverflow.com/questions/1369831/eliminate-extra-separators-below-uitableview-in-iphone-sdk
 
         tableView.register(UINib(nibName: "FooterCell", bundle: Bundle(for: FooterCell.self)), forCellReuseIdentifier: footerCellReuseIdentifier)
@@ -86,6 +87,7 @@ open class LoadMoreTableViewController: UITableViewController {
 
         case .footer:
             let cell = tableView.dequeueReusableCell(withIdentifier: footerCellReuseIdentifier, for: indexPath) as! FooterCell
+            cell.backgroundColor = .clear
             cell.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0) // cf. http://stackoverflow.com/questions/8561774/hide-separator-line-on-one-uitableviewcell
             cell.showsRetryButton = showsRetryButton
             cell.retryButtonTapped = { [weak self] in
