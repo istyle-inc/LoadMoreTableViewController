@@ -43,7 +43,6 @@ open class LoadMoreTableViewController: UITableViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.backgroundColor = .lightGray
         tableView.tableFooterView = UIView() // cf. http://stackoverflow.com/questions/1369831/eliminate-extra-separators-below-uitableview-in-iphone-sdk
 
         tableView.register(UINib(nibName: "FooterCell", bundle: Bundle(for: FooterCell.self)), forCellReuseIdentifier: footerCellReuseIdentifier)
