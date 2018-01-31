@@ -34,7 +34,7 @@ open class LoadMoreTableViewController: UITableViewController {
 
     public var fetchCellReuseIdentifier: (_ row: Int) -> String? = { _ in return nil }
     public var fetchSourceObjects: (_ completion: @escaping (_ sourceObjects: [Any], _ hasNext: Bool) -> ()) -> () = { _ in }
-    public var configureCell: (_ cell: UITableViewCell, _ row: Int) -> UITableViewCell = { _ in return UITableViewCell() }
+    public var configureCell: (_ cell: UITableViewCell, _ row: Int) -> UITableViewCell = { (_, _) in return UITableViewCell() }
 
     public var didSelectRow: ((Int) -> ())?
 
