@@ -76,12 +76,12 @@ class ViewController: LoadMoreTableViewController {
         }
     }
 
-    func clear() {
+    @objc func clear() {
         count = 0
         refreshData(immediately: true)
     }
 
-    func refresh() {
+    @objc func refresh() {
         count = 0
         refreshData(immediately: false)
     }
