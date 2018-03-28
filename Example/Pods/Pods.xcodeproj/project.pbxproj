@@ -1,0 +1,753 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20E813E19B18071B20BEF287074263A1 /* Pods-LoadMoreTableViewController_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 302248EAEB0AE941A756A90D3B5F1AD5 /* Pods-LoadMoreTableViewController_Example-dummy.m */; };
+		4DE191E8D774BE6B3D20B59808B81EA9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		580E1A02FBDC6DCB0309EDAA30B3F01E /* FooterCell.xib in Sources */ = {isa = PBXBuildFile; fileRef = 9CB73A702B6769D6000BCBA3A26C2756 /* FooterCell.xib */; };
+		6809A3DA0D1491F4085BA6FC8AA4BE54 /* LoadMoreTableViewController-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 212BB28D323AFF58B6336D0415BAC265 /* LoadMoreTableViewController-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7347D030B66867494E5E227AA7BD297A /* LoadMoreTableViewController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE1ADF8F7742EEC989FC978BA43B28 /* LoadMoreTableViewController-dummy.m */; };
+		76A131974E374014FAA8B13C10323A07 /* LoadMoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D937B8554E2D2E9389B950A96822C3 /* LoadMoreTableViewController.swift */; };
+		780C88B7E1C26914A2A2129307FBB3A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		C6E62C045791A4395D0D446619BE4DCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		C9A3E3F71B9421AB0AE8DDF668C5F03C /* Pods-LoadMoreTableViewController_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AB3096046B72CE8F344832EA9A6038D4 /* Pods-LoadMoreTableViewController_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD38E896DD898C106E6270F13CBF4080 /* Pods-LoadMoreTableViewController_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AFBDE5A6886590C26DECA306758EBE /* Pods-LoadMoreTableViewController_Tests-dummy.m */; };
+		EFADBEBD8EDFDEE20028807E59D262E6 /* Pods-LoadMoreTableViewController_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B67BED7FDA46D7416C5C010D046588AF /* Pods-LoadMoreTableViewController_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAE1463D0372C569D6681282555873BF /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4046C9B20FACE120B068CA64167C6ED1 /* FooterCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0EC147F73C33572A5207959CF3623ECE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5906F91115F0E78D9E7DEFD294B9CF5E;
+			remoteInfo = LoadMoreTableViewController;
+		};
+		E95C88CBC26380A5CF93E9A750876352 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5906F91115F0E78D9E7DEFD294B9CF5E;
+			remoteInfo = LoadMoreTableViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0D64B13CCF6BECD0F9449DD1A4FAA865 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		16C29F692B04A2331CCF941DD548727F /* LoadMoreTableViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoadMoreTableViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BCFE3012B4B2C2597D7CF10B66C63FC /* Pods-LoadMoreTableViewController_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LoadMoreTableViewController_Tests-resources.sh"; sourceTree = "<group>"; };
+		1E46B28FDAB46A43BE03F824E405E15B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		212BB28D323AFF58B6336D0415BAC265 /* LoadMoreTableViewController-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LoadMoreTableViewController-umbrella.h"; sourceTree = "<group>"; };
+		26364AC6FE27947434697E1472311E4C /* LoadMoreTableViewController.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LoadMoreTableViewController.xcconfig; sourceTree = "<group>"; };
+		302248EAEB0AE941A756A90D3B5F1AD5 /* Pods-LoadMoreTableViewController_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LoadMoreTableViewController_Example-dummy.m"; sourceTree = "<group>"; };
+		3573B07CCE63112220E7495DD582CEB9 /* Pods-LoadMoreTableViewController_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LoadMoreTableViewController_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		36DA30F4FE0A1FF320DC86C99F2A3383 /* Pods-LoadMoreTableViewController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LoadMoreTableViewController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4046C9B20FACE120B068CA64167C6ED1 /* FooterCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FooterCell.swift; path = Pod/Classes/FooterCell.swift; sourceTree = "<group>"; };
+		455816B5FA7CB0CD0ABBDAA94AF73479 /* Pods-LoadMoreTableViewController_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LoadMoreTableViewController_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		45D5EE31BD50B5FDBC00E4CC2D4D6D89 /* Pods-LoadMoreTableViewController_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LoadMoreTableViewController_Tests.modulemap"; sourceTree = "<group>"; };
+		47D937B8554E2D2E9389B950A96822C3 /* LoadMoreTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoadMoreTableViewController.swift; path = Pod/Classes/LoadMoreTableViewController.swift; sourceTree = "<group>"; };
+		4D2E64585397606A9FFCF156F90D1C9F /* Pods-LoadMoreTableViewController_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LoadMoreTableViewController_Example-frameworks.sh"; sourceTree = "<group>"; };
+		53D0DEB2D42BD84CA38F3C60F4BBAD3F /* Pods_LoadMoreTableViewController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadMoreTableViewController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CDE1ADF8F7742EEC989FC978BA43B28 /* LoadMoreTableViewController-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LoadMoreTableViewController-dummy.m"; sourceTree = "<group>"; };
+		6041A09547E14D5637CDF9DF910A9628 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6B4EEA6E1F9F5841774CF90A427B5A41 /* Pods-LoadMoreTableViewController_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LoadMoreTableViewController_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		71DC2C30352AED1160917F2BABCA6E46 /* LoadMoreTableViewController.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = LoadMoreTableViewController.podspec; sourceTree = "<group>"; };
+		7884EF894A6C0266FE8B5F78A38FB78F /* Pods-LoadMoreTableViewController_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LoadMoreTableViewController_Example.modulemap"; sourceTree = "<group>"; };
+		7D9FB509BEDC84E3E4679B0011B7B79F /* Pods-LoadMoreTableViewController_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LoadMoreTableViewController_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		7F6E11387D035ADAAFC1B0FF2FA31790 /* Pods-LoadMoreTableViewController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LoadMoreTableViewController_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		8924038CF94D7A4FE3FDC44A2B9A8D04 /* LoadMoreTableViewController.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = LoadMoreTableViewController.modulemap; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9CB73A702B6769D6000BCBA3A26C2756 /* FooterCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = FooterCell.xib; path = Pod/Classes/FooterCell.xib; sourceTree = "<group>"; };
+		A6347867A733535D134E87A5B0F21BC0 /* Pods-LoadMoreTableViewController_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LoadMoreTableViewController_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		AB3096046B72CE8F344832EA9A6038D4 /* Pods-LoadMoreTableViewController_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LoadMoreTableViewController_Tests-umbrella.h"; sourceTree = "<group>"; };
+		ACA3DA46DFF5E3A8EA8029AB534452A3 /* Pods-LoadMoreTableViewController_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LoadMoreTableViewController_Example-resources.sh"; sourceTree = "<group>"; };
+		B67BED7FDA46D7416C5C010D046588AF /* Pods-LoadMoreTableViewController_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-LoadMoreTableViewController_Example-umbrella.h"; sourceTree = "<group>"; };
+		CCAACFA3E783AD77A4936B78FA8BB846 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6D0135558E6E16E046301E07C95169D /* LoadMoreTableViewController-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LoadMoreTableViewController-prefix.pch"; sourceTree = "<group>"; };
+		D8AFBDE5A6886590C26DECA306758EBE /* Pods-LoadMoreTableViewController_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LoadMoreTableViewController_Tests-dummy.m"; sourceTree = "<group>"; };
+		E853E3E1A9854CDC56AFE1C37C951642 /* Pods-LoadMoreTableViewController_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LoadMoreTableViewController_Example.release.xcconfig"; sourceTree = "<group>"; };
+		E879C839065CACBC1758862E7D5CABD9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA74C2A6246881FEF3F4E8A1548A62AF /* Pods_LoadMoreTableViewController_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoadMoreTableViewController_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EACE2F7DBD14BBC625C5D1471BC3CB08 /* Pods-LoadMoreTableViewController_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LoadMoreTableViewController_Example.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E017C95E6AE47F2A23700A8E11D6EA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DE191E8D774BE6B3D20B59808B81EA9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8E63D92406424149D244033A2CB1C469 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6E62C045791A4395D0D446619BE4DCF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D964D1A8F957ADCDE615CB0B399EFC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				780C88B7E1C26914A2A2129307FBB3A0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		49C7DDAAD436F94044411079D108145E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				16C29F692B04A2331CCF941DD548727F /* LoadMoreTableViewController.framework */,
+				EA74C2A6246881FEF3F4E8A1548A62AF /* Pods_LoadMoreTableViewController_Example.framework */,
+				53D0DEB2D42BD84CA38F3C60F4BBAD3F /* Pods_LoadMoreTableViewController_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		641AA208C4E313BCEEF85A459E269FE4 /* Pods-LoadMoreTableViewController_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6041A09547E14D5637CDF9DF910A9628 /* Info.plist */,
+				45D5EE31BD50B5FDBC00E4CC2D4D6D89 /* Pods-LoadMoreTableViewController_Tests.modulemap */,
+				A6347867A733535D134E87A5B0F21BC0 /* Pods-LoadMoreTableViewController_Tests-acknowledgements.markdown */,
+				6B4EEA6E1F9F5841774CF90A427B5A41 /* Pods-LoadMoreTableViewController_Tests-acknowledgements.plist */,
+				D8AFBDE5A6886590C26DECA306758EBE /* Pods-LoadMoreTableViewController_Tests-dummy.m */,
+				7D9FB509BEDC84E3E4679B0011B7B79F /* Pods-LoadMoreTableViewController_Tests-frameworks.sh */,
+				1BCFE3012B4B2C2597D7CF10B66C63FC /* Pods-LoadMoreTableViewController_Tests-resources.sh */,
+				AB3096046B72CE8F344832EA9A6038D4 /* Pods-LoadMoreTableViewController_Tests-umbrella.h */,
+				36DA30F4FE0A1FF320DC86C99F2A3383 /* Pods-LoadMoreTableViewController_Tests.debug.xcconfig */,
+				7F6E11387D035ADAAFC1B0FF2FA31790 /* Pods-LoadMoreTableViewController_Tests.release.xcconfig */,
+			);
+			name = "Pods-LoadMoreTableViewController_Tests";
+			path = "Target Support Files/Pods-LoadMoreTableViewController_Tests";
+			sourceTree = "<group>";
+		};
+		7A350FDECCFD2FF59190B55096111247 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A575388C2D50452D5BA6A64C79E55DC3 /* Pods-LoadMoreTableViewController_Example */,
+				641AA208C4E313BCEEF85A459E269FE4 /* Pods-LoadMoreTableViewController_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7B881ECCF12D4293B18E3FAA748EC364 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCAACFA3E783AD77A4936B78FA8BB846 /* Info.plist */,
+				8924038CF94D7A4FE3FDC44A2B9A8D04 /* LoadMoreTableViewController.modulemap */,
+				26364AC6FE27947434697E1472311E4C /* LoadMoreTableViewController.xcconfig */,
+				5CDE1ADF8F7742EEC989FC978BA43B28 /* LoadMoreTableViewController-dummy.m */,
+				D6D0135558E6E16E046301E07C95169D /* LoadMoreTableViewController-prefix.pch */,
+				212BB28D323AFF58B6336D0415BAC265 /* LoadMoreTableViewController-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/LoadMoreTableViewController";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				C86206932F07623DF5526556D9A9F171 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				49C7DDAAD436F94044411079D108145E /* Products */,
+				7A350FDECCFD2FF59190B55096111247 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		7F7E35422FFC92442D1F997CE8806745 /* LoadMoreTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4046C9B20FACE120B068CA64167C6ED1 /* FooterCell.swift */,
+				9CB73A702B6769D6000BCBA3A26C2756 /* FooterCell.xib */,
+				47D937B8554E2D2E9389B950A96822C3 /* LoadMoreTableViewController.swift */,
+				ACB7514B8C5795F41AE381F1891AC41A /* Pod */,
+				7B881ECCF12D4293B18E3FAA748EC364 /* Support Files */,
+			);
+			name = LoadMoreTableViewController;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		A575388C2D50452D5BA6A64C79E55DC3 /* Pods-LoadMoreTableViewController_Example */ = {
+			isa = PBXGroup;
+			children = (
+				E879C839065CACBC1758862E7D5CABD9 /* Info.plist */,
+				7884EF894A6C0266FE8B5F78A38FB78F /* Pods-LoadMoreTableViewController_Example.modulemap */,
+				455816B5FA7CB0CD0ABBDAA94AF73479 /* Pods-LoadMoreTableViewController_Example-acknowledgements.markdown */,
+				3573B07CCE63112220E7495DD582CEB9 /* Pods-LoadMoreTableViewController_Example-acknowledgements.plist */,
+				302248EAEB0AE941A756A90D3B5F1AD5 /* Pods-LoadMoreTableViewController_Example-dummy.m */,
+				4D2E64585397606A9FFCF156F90D1C9F /* Pods-LoadMoreTableViewController_Example-frameworks.sh */,
+				ACA3DA46DFF5E3A8EA8029AB534452A3 /* Pods-LoadMoreTableViewController_Example-resources.sh */,
+				B67BED7FDA46D7416C5C010D046588AF /* Pods-LoadMoreTableViewController_Example-umbrella.h */,
+				EACE2F7DBD14BBC625C5D1471BC3CB08 /* Pods-LoadMoreTableViewController_Example.debug.xcconfig */,
+				E853E3E1A9854CDC56AFE1C37C951642 /* Pods-LoadMoreTableViewController_Example.release.xcconfig */,
+			);
+			name = "Pods-LoadMoreTableViewController_Example";
+			path = "Target Support Files/Pods-LoadMoreTableViewController_Example";
+			sourceTree = "<group>";
+		};
+		ACB7514B8C5795F41AE381F1891AC41A /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				0D64B13CCF6BECD0F9449DD1A4FAA865 /* LICENSE */,
+				71DC2C30352AED1160917F2BABCA6E46 /* LoadMoreTableViewController.podspec */,
+				1E46B28FDAB46A43BE03F824E405E15B /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C86206932F07623DF5526556D9A9F171 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F7E35422FFC92442D1F997CE8806745 /* LoadMoreTableViewController */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6020D390E5AD996422A78817448A6555 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6809A3DA0D1491F4085BA6FC8AA4BE54 /* LoadMoreTableViewController-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		705FF60EAEC47C48E380C9AA8467BBE4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFADBEBD8EDFDEE20028807E59D262E6 /* Pods-LoadMoreTableViewController_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		811BAA5DF85E042C93F3D9EE1D631533 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9A3E3F71B9421AB0AE8DDF668C5F03C /* Pods-LoadMoreTableViewController_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		10D3EB196BD448CAB2FEC71990078A2A /* Pods-LoadMoreTableViewController_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08337D7239AA87FF7006BD92F0DB31B5 /* Build configuration list for PBXNativeTarget "Pods-LoadMoreTableViewController_Example" */;
+			buildPhases = (
+				552A3C6F5F8CAEDA41C490111ED26B97 /* Sources */,
+				8E63D92406424149D244033A2CB1C469 /* Frameworks */,
+				705FF60EAEC47C48E380C9AA8467BBE4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				86297FA44F36037862CE61E7FA0E1EAC /* PBXTargetDependency */,
+			);
+			name = "Pods-LoadMoreTableViewController_Example";
+			productName = "Pods-LoadMoreTableViewController_Example";
+			productReference = EA74C2A6246881FEF3F4E8A1548A62AF /* Pods_LoadMoreTableViewController_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5906F91115F0E78D9E7DEFD294B9CF5E /* LoadMoreTableViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A2CB4D2BA221F9FBB82C698AE7DDD72 /* Build configuration list for PBXNativeTarget "LoadMoreTableViewController" */;
+			buildPhases = (
+				C3A506400DDE927599055BF0786B9149 /* Sources */,
+				9D964D1A8F957ADCDE615CB0B399EFC6 /* Frameworks */,
+				6020D390E5AD996422A78817448A6555 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoadMoreTableViewController;
+			productName = LoadMoreTableViewController;
+			productReference = 16C29F692B04A2331CCF941DD548727F /* LoadMoreTableViewController.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6302F4C970AAB60773DF2281E6EBF78E /* Pods-LoadMoreTableViewController_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06E8BA6F87BBE7418498988DDF8B589C /* Build configuration list for PBXNativeTarget "Pods-LoadMoreTableViewController_Tests" */;
+			buildPhases = (
+				8AC8502AA94F14164917C5F49F918B80 /* Sources */,
+				7E017C95E6AE47F2A23700A8E11D6EA9 /* Frameworks */,
+				811BAA5DF85E042C93F3D9EE1D631533 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E1A612435F118FB10A4B7FB9FA8839F1 /* PBXTargetDependency */,
+			);
+			name = "Pods-LoadMoreTableViewController_Tests";
+			productName = "Pods-LoadMoreTableViewController_Tests";
+			productReference = 53D0DEB2D42BD84CA38F3C60F4BBAD3F /* Pods_LoadMoreTableViewController_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 49C7DDAAD436F94044411079D108145E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5906F91115F0E78D9E7DEFD294B9CF5E /* LoadMoreTableViewController */,
+				10D3EB196BD448CAB2FEC71990078A2A /* Pods-LoadMoreTableViewController_Example */,
+				6302F4C970AAB60773DF2281E6EBF78E /* Pods-LoadMoreTableViewController_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		552A3C6F5F8CAEDA41C490111ED26B97 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20E813E19B18071B20BEF287074263A1 /* Pods-LoadMoreTableViewController_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8AC8502AA94F14164917C5F49F918B80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD38E896DD898C106E6270F13CBF4080 /* Pods-LoadMoreTableViewController_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3A506400DDE927599055BF0786B9149 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAE1463D0372C569D6681282555873BF /* FooterCell.swift in Sources */,
+				580E1A02FBDC6DCB0309EDAA30B3F01E /* FooterCell.xib in Sources */,
+				7347D030B66867494E5E227AA7BD297A /* LoadMoreTableViewController-dummy.m in Sources */,
+				76A131974E374014FAA8B13C10323A07 /* LoadMoreTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		86297FA44F36037862CE61E7FA0E1EAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LoadMoreTableViewController;
+			target = 5906F91115F0E78D9E7DEFD294B9CF5E /* LoadMoreTableViewController */;
+			targetProxy = E95C88CBC26380A5CF93E9A750876352 /* PBXContainerItemProxy */;
+		};
+		E1A612435F118FB10A4B7FB9FA8839F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LoadMoreTableViewController;
+			target = 5906F91115F0E78D9E7DEFD294B9CF5E /* LoadMoreTableViewController */;
+			targetProxy = 0EC147F73C33572A5207959CF3623ECE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		11C39CBDAD43D55887257ACDAAB0D106 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26364AC6FE27947434697E1472311E4C /* LoadMoreTableViewController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LoadMoreTableViewController/LoadMoreTableViewController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LoadMoreTableViewController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LoadMoreTableViewController/LoadMoreTableViewController.modulemap";
+				PRODUCT_NAME = LoadMoreTableViewController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1E6BE2396469D84EEB4D7EB7BFC6B7E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26364AC6FE27947434697E1472311E4C /* LoadMoreTableViewController.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/LoadMoreTableViewController/LoadMoreTableViewController-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LoadMoreTableViewController/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LoadMoreTableViewController/LoadMoreTableViewController.modulemap";
+				PRODUCT_NAME = LoadMoreTableViewController;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2DE2F6DF6AA2442B5739F9968106DCED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EACE2F7DBD14BBC625C5D1471BC3CB08 /* Pods-LoadMoreTableViewController_Example.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LoadMoreTableViewController_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LoadMoreTableViewController_Example/Pods-LoadMoreTableViewController_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LoadMoreTableViewController_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B254DAA6CF0CE39F4A3D11B90A7E059A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		B363FB50C5B530FCEC59D01F3A4D58DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F6E11387D035ADAAFC1B0FF2FA31790 /* Pods-LoadMoreTableViewController_Tests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LoadMoreTableViewController_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LoadMoreTableViewController_Tests/Pods-LoadMoreTableViewController_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LoadMoreTableViewController_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BDE08D08C1D5AC8A2252A39B36744043 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36DA30F4FE0A1FF320DC86C99F2A3383 /* Pods-LoadMoreTableViewController_Tests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LoadMoreTableViewController_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LoadMoreTableViewController_Tests/Pods-LoadMoreTableViewController_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LoadMoreTableViewController_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E4B68EE12B21C47CB798D9B1ECA6D7A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		E86F4BBA0E575FC9432551A142DC2BE4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E853E3E1A9854CDC56AFE1C37C951642 /* Pods-LoadMoreTableViewController_Example.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-LoadMoreTableViewController_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-LoadMoreTableViewController_Example/Pods-LoadMoreTableViewController_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_LoadMoreTableViewController_Example;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		06E8BA6F87BBE7418498988DDF8B589C /* Build configuration list for PBXNativeTarget "Pods-LoadMoreTableViewController_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDE08D08C1D5AC8A2252A39B36744043 /* Debug */,
+				B363FB50C5B530FCEC59D01F3A4D58DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		08337D7239AA87FF7006BD92F0DB31B5 /* Build configuration list for PBXNativeTarget "Pods-LoadMoreTableViewController_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DE2F6DF6AA2442B5739F9968106DCED /* Debug */,
+				E86F4BBA0E575FC9432551A142DC2BE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A2CB4D2BA221F9FBB82C698AE7DDD72 /* Build configuration list for PBXNativeTarget "LoadMoreTableViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E6BE2396469D84EEB4D7EB7BFC6B7E7 /* Debug */,
+				11C39CBDAD43D55887257ACDAAB0D106 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4B68EE12B21C47CB798D9B1ECA6D7A7 /* Debug */,
+				B254DAA6CF0CE39F4A3D11B90A7E059A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
