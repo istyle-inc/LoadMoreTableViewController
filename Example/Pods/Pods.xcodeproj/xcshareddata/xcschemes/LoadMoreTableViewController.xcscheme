@@ -20,34 +20,6 @@
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "10D3EB196BD448CAB2FEC71990078A2A"
-               BuildableName = "Pods_LoadMoreTableViewController_Example.framework"
-               BlueprintName = "Pods-LoadMoreTableViewController_Example"
-               ReferencedContainer = "container:Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6302F4C970AAB60773DF2281E6EBF78E"
-               BuildableName = "Pods_LoadMoreTableViewController_Tests.framework"
-               BlueprintName = "Pods-LoadMoreTableViewController_Tests"
-               ReferencedContainer = "container:Pods.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
