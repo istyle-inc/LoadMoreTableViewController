@@ -1,0 +1,6 @@
+framework module Pods_LoadMoreTableViewController_Example {
+  umbrella header "Pods-LoadMoreTableViewController_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

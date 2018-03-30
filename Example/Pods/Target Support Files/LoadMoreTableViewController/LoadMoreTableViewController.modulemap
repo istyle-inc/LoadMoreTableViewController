@@ -1,0 +1,6 @@
+framework module LoadMoreTableViewController {
+  umbrella header "LoadMoreTableViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}
