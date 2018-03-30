@@ -1,5 +1,5 @@
 PODS:
-  - LoadMoreTableViewController (1.2.1)
+  - LoadMoreTableViewController (1.3.1)
 
 DEPENDENCIES:
   - LoadMoreTableViewController (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  LoadMoreTableViewController: b4339ceb90c9973e215a118a1749fbbb1ab06f2c
+  LoadMoreTableViewController: 325c1be56d959f58de933359a9e2ec85b4fdfde8
 
 PODFILE CHECKSUM: 74bded010c43af9975c141a12f5ef6a5cbf88069
 
