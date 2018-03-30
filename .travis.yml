@@ -8,7 +8,7 @@ cache: cocoapods
 podfile: Example/Podfile
 before_install:
 - gem install cocoapods --pre # Since Travis is not always on latest version
-- pod install --project-directory=Example
+#- pod install --project-directory=Example
 script:
 - set -o pipefail && xcodebuild test -workspace Example/LoadMoreTableViewController.xcworkspace -scheme LoadMoreTableViewController-Example -destination 'platform=iOS Simulator,name=iPhone 6' ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty
 - pod lib lint
