@@ -116,7 +116,7 @@ open class LoadMoreTableViewController: UITableViewController {
 
     // cf. http://stackoverflow.com/questions/26917728/ios-uitableviewautomaticdimension-rowheight-poor-performance-jumping
     open override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     open override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

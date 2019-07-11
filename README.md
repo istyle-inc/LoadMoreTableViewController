@@ -101,7 +101,7 @@ Use function `public func refreshData(immediately immediately: Bool)`.
 
 ## Requirements
 
-Swift 3.0
+Swift 4.2
 
 ## Installation
 
