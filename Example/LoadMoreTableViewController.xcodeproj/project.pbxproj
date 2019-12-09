@@ -275,7 +275,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LoadMoreTableViewController_Tests/Pods-LoadMoreTableViewController_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LoadMoreTableViewController_Tests/Pods-LoadMoreTableViewController_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LoadMoreTableViewController/LoadMoreTableViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -284,7 +284,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoadMoreTableViewController_Tests/Pods-LoadMoreTableViewController_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LoadMoreTableViewController_Tests/Pods-LoadMoreTableViewController_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4B8BFBD7FB81342836E511C6 /* [CP] Check Pods Manifest.lock */ = {
@@ -311,7 +311,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-LoadMoreTableViewController_Example/Pods-LoadMoreTableViewController_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-LoadMoreTableViewController_Example/Pods-LoadMoreTableViewController_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LoadMoreTableViewController/LoadMoreTableViewController.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -320,7 +320,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LoadMoreTableViewController_Example/Pods-LoadMoreTableViewController_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LoadMoreTableViewController_Example/Pods-LoadMoreTableViewController_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D23E087F9D39876E9446D3E0 /* [CP] Check Pods Manifest.lock */ = {
@@ -435,7 +435,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -475,7 +475,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -484,14 +484,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 739AF83EA3D4C8CE56A37447 /* Pods-LoadMoreTableViewController_Example.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LoadMoreTableViewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.LoadMoreTableViewController-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -499,14 +499,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6AA2CE3D97FCD85B9DB9B224 /* Pods-LoadMoreTableViewController_Example.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LoadMoreTableViewController/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.LoadMoreTableViewController-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -514,7 +514,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B352AAECF6A62B69FA4C6AAC /* Pods-LoadMoreTableViewController_Tests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -525,7 +525,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoadMoreTableViewController_Example.app/LoadMoreTableViewController_Example";
 			};
 			name = Debug;
@@ -534,14 +534,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0B01B9EAB5CA6917D1622012 /* Pods-LoadMoreTableViewController_Tests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoadMoreTableViewController_Example.app/LoadMoreTableViewController_Example";
 			};
 			name = Release;

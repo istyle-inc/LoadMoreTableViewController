@@ -216,7 +216,7 @@ open class LoadMoreTableViewController: UITableViewController {
     private func updateTable(reload: Bool, hasNext: Bool) {
         DispatchQueue.main.async {
             UIView.setAnimationsEnabled(false)
-            if let mainSection = self.sectionTypes.index(of: .main) {
+            if let mainSection = self.sectionTypes.firstIndex(of: .main) {
                 let newDataCount = self.sourceObjects.count
                 let currentDataCount = self.tableView.numberOfRows(inSection: mainSection)
                 if currentDataCount < newDataCount {
@@ -251,7 +251,7 @@ open class LoadMoreTableViewController: UITableViewController {
             return
         }
 
-        guard let footerSection = sectionTypes.index(of: .footer) else {
+        guard let footerSection = sectionTypes.firstIndex(of: .footer) else {
             return
         }
 

@@ -1,6 +1,6 @@
 {
   "name": "LoadMoreTableViewController",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "summary": "Automatic cell loading on UITableViewController.",
   "homepage": "https://github.com/istyle-inc/LoadMoreTableViewController",
   "license": "MIT",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/istyle-inc/LoadMoreTableViewController.git",
-    "tag": "2.0.0"
+    "tag": "2.1.0"
   },
   "platforms": {
     "ios": "8.0"
