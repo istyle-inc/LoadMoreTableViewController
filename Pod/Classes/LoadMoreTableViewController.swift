@@ -190,7 +190,7 @@ open class LoadMoreTableViewController: UITableViewController {
 
         let oldDataCount = sourceObjects.count
 
-        DispatchQueue.global().async {
+        DispatchQueue.main.async {
             self.fetchSourceObjects() { [weak self] sourceObjects, hasNext in
 
                 // Prevent data mismatch when cleared existing data while fetching new data
