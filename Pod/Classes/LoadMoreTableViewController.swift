@@ -155,6 +155,7 @@ open class LoadMoreTableViewController: UITableViewController {
     ///     - immediately:
     ///         - true: It will show an activity indicator on the top then fetch the data.
     ///         - false: It will refresh the table view after fetching the data.
+    @available(*, deprecated, renamed: "safeRefreshData")
     open func refreshData(immediately: Bool) {
         sourceObjects.removeAll()
         showsRetryButton = false
@@ -165,6 +166,25 @@ open class LoadMoreTableViewController: UITableViewController {
         }
 
         DispatchQueue.main.async {
+            if immediately {
+                self.tableView.reloadData()
+                self.updateFooter(show: true)
+            } else {
+                self.loadMore(reload: true)
+            }
+        }
+    }
+
+    open func safeRefreshData(immediately: Bool) {
+        DispatchQueue.main.async {
+            self.sourceObjects.removeAll()
+            self.showsRetryButton = false
+
+            // To refresh the table view when it is scrolling
+            if immediately {
+                self.isScrolling = false
+            }
+
             if immediately {
                 self.tableView.reloadData()
                 self.updateFooter(show: true)
