@@ -100,9 +100,9 @@ Use function `public func refreshData(immediately immediately: Bool)`.
     - Notifies what row is selected.
 
 ## Requirements
-- iOS 8
-- Xcode 12.0-beta6
-- Swift 5.3
+- iOS 13
+- Xcode 13
+- Swift 5.5
 
 ## Installation
 
