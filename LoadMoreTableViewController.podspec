@@ -8,8 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = "LoadMoreTableViewController"
-  s.version          = "2.1.3"
+  s.version          = "2.2.0"
   s.summary          = "Automatic cell loading on UITableViewController."
+  s.swift_version    = "5.5"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -26,7 +27,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/istyle-inc/LoadMoreTableViewController.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '13.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
